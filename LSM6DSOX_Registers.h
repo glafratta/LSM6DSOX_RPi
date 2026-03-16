@@ -33,4 +33,7 @@
 #define LSM6DSOX_OUTZ_L_XL          0X2C
 #define LSM6DSOX_OUTZ_H_XL          0X2D
 
+#define LSM6DSOX_INT1_CTRL          0X0D //interrupt pin 1
+#define LSM6DSOX_INT2_CTRL          0X0E //interrupt pin 2
+
 #endif

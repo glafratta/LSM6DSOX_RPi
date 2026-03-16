@@ -6,13 +6,12 @@ void LSM6DSOX::start(){
     gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_INPUT); //input line
     gpiod_line_settings_set_edge_detection(settings, GPIOD_LINE_EDGE_RISING); //detect rising edge
     line_cfg = gpiod_line_config_new();
-    gpiod_line_config_add_line_settings(line_cfg, &LMS6DSOX_DRDY_GPIO, 1, settings); //offset is the gpio pin (22)
+    if(gpiod_line_config_add_line_settings(line_cfg, &LMS6DSOX_DRDY_GPIO, 1, settings)<0 ){ //offset is the gpio pin (22)
+        throw "Add line settings failed";
+    }
     req_cfg = gpiod_request_config_new();
-    gpiod_request_config_set_consumer(req_cfg, "imu");
+    gpiod_request_config_set_consumer(req_cfg, "LSM6DSOX");
     request = gpiod_chip_request_lines(chipDRDY, req_cfg, line_cfg);
-    //pinDRDY=gpiod_chip_get_line_info(chipDRDY, LMS6DSOX_DRDY_GPIO);
-    //v1, need to rewrite in v2
-   // int ret=gpiod_line_request_rising_edge_events(pinDRDY, "Consumer"); //request rising edge events not. on a single line
     if (request==nullptr){
         gpiod_line_request_release(request);
         throw "Could not request event";
@@ -26,7 +25,7 @@ void LSM6DSOX::start(){
 void LSM6DSOX::worker(){
     running=true;
     while (running){
-        int r=gpiod_line_request_wait_edge_events(request, -1);
+        int r=gpiod_line_request_wait_edge_events(request, wait_line);
         if (DEBUG){
             std::cout<<"Edge event code:"<<r<<std::endl;
         }
@@ -58,11 +57,10 @@ void LSM6DSOX::stop(){
         std::cout<<"Stopping..."<<std::endl;
     }
     running = false;
-    //if (thread.joinable()) {
+    if (thread.joinable()) {
 	    thread.join();
-   // }
+    }
     if (NULL != request) {
-	    //gpiod_line_release(pinDRDY);
         gpiod_line_request_release(request);
     }
     if (NULL != chipDRDY) {
@@ -97,4 +95,14 @@ GyroscopeData LSM6DSOX::readGyro(){
 
 void LSM6DSOX::contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes){
 
+}
+
+void LSM6DSOX::i2cOpen(int bus, int address){
+    const int fd=open(device, O_RDWR);
+    if (fd<0){
+        throw "Can't open I2C device"
+    }
+    //I2C_SLAVE comes from linux kernel driver, no need to define
+    const int r=ioctl(fd, I2C_SLAVE, address);
+    
 }

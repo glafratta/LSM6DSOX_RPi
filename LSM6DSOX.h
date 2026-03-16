@@ -63,7 +63,6 @@ class LSM6DSOX{
     * @brief Reads from accelerometer/gyroscope/temperature sensor registers
     */
     int getData();
-   // int i2cOpen();
 
     GyroscopeData readGyro();
 
@@ -76,5 +75,14 @@ class LSM6DSOX{
     void contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes);
 
     friend class LSM6DSOXTest; //for unit testing
+
+    /**
+    * @brief Code for "gpiod_line_request_wait_edge_events" 
+    * -1: wait indefinitely
+    * 0: return immediately
+    */
+    uint8_t wait_line=-1; 
+
+    void i2cOpen(int bus, int address);
 };
 #endif
