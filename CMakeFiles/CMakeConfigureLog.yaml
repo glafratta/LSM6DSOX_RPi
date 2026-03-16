@@ -588,3 +588,46 @@ events:
       Running the CXX compiler's linker: "/usr/bin/ld" "-v"
       GNU ld (GNU Binutils for Debian) 2.44
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.31/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/usr/share/cmake-3.31/Modules/CheckCXXSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:99 (CHECK_CXX_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.31/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "/usr/share/cmake-3.31/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "/usr/lib/aarch64-linux-gnu/cmake/GTest/GTestConfig.cmake:39 (find_dependency)"
+      - "test/CMakeLists.txt:5 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw"
+      binary: "/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ef97d/fast
+        gmake[1]: Entering directory '/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ef97d.dir/build.make CMakeFiles/cmTC_ef97d.dir/build
+        gmake[2]: Entering directory '/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw'
+        Building CXX object CMakeFiles/cmTC_ef97d.dir/src.cxx.o
+        /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_ef97d.dir/src.cxx.o -c /home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw/src.cxx
+        Linking CXX executable cmTC_ef97d
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef97d.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_ef97d.dir/src.cxx.o -o cmTC_ef97d
+        gmake[2]: Leaving directory '/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw'
+        gmake[1]: Leaving directory '/home/autism/LSM6DSOX_RPi/CMakeFiles/CMakeScratch/TryCompile-3hOOxw'
+        
+      exitCode: 0
+...

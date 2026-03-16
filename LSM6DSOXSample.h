@@ -1,3 +1,5 @@
+#ifndef LSM6DSOX_SAMPLE
+#define LSM6DSOX_SAMPLE
 #include <stdlib.h>
 
 struct GyroscopeData{
@@ -54,3 +56,4 @@ struct LSM6DSOXSample{
 
 
 //optional add gyro/acc settings
+#endif

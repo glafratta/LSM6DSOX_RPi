@@ -62,7 +62,31 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/autism/LSM6DSOX_RPi/*.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
+    "/home/autism/LSM6DSOX_RPi/LSM6DSOX.h"
+    "/home/autism/LSM6DSOX_RPi/LSM6DSOXSample.h"
+    "/home/autism/LSM6DSOX_RPi/LSM6DSOX_Registers.h"
+    "/home/autism/LSM6DSOX_RPi/lsm6dsox_reg.h"
+    )
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/autism/LSM6DSOX_RPi/libLSM6DSOX_Rpi_static.a")
+endif()
+
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
+    "/home/autism/LSM6DSOX_RPi/LSM6DSOX.h"
+    "/home/autism/LSM6DSOX_RPi/LSM6DSOXSample.h"
+    "/home/autism/LSM6DSOX_RPi/LSM6DSOX_Registers.h"
+    "/home/autism/LSM6DSOX_RPi/lsm6dsox_reg.h"
+    )
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/home/autism/LSM6DSOX_RPi/test/cmake_install.cmake")
+
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT

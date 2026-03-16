@@ -1,3 +1,6 @@
+#ifndef LSM6DSOX_REGISTERS_H
+#define LSM6DSOX_REGISTERS_H
+
 #include <stdlib.h>
 
 
@@ -29,3 +32,5 @@
 #define LSM6DSOX_OUTY_H_XL          0X2B
 #define LSM6DSOX_OUTZ_L_XL          0X2C
 #define LSM6DSOX_OUTZ_H_XL          0X2D
+
+#endif

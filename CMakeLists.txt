@@ -1,16 +1,20 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.10.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
 project(LSM6DSOX_Rpi VERSION 1.0.0 LANGUAGES CXX)
 
+include(GNUInstallDirs)
+
 file(GLOB src "*.cpp")
 
 file(GLOB include "*.h")
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 add_library(LSM6DSOX_Rpi SHARED ${src})
 
-set_target_properties(LSM6DSOX_Rpi PROPERTIES PUBLIC_HEADER *.h)
+set_target_properties(LSM6DSOX_Rpi PROPERTIES POSITION_INDEPENDENT_CODE TRUE PUBLIC_HEADER "${include}")
 
 target_link_libraries(LSM6DSOX_Rpi gpiod)
 
@@ -19,3 +23,18 @@ install(TARGETS LSM6DSOX_Rpi EXPORT LSM6DSOX_Rpi-targets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
+message("library and archive destination " ${CMAKE_INSTALL_LIBDIR})
+
+add_library(LSM6DSOX_Rpi_static STATIC ${src})
+
+set_target_properties(LSM6DSOX_Rpi_static PROPERTIES POSITION_INDEPENDENT_CODE TRUE PUBLIC_HEADER "${include}")
+
+target_link_libraries(LSM6DSOX_Rpi_static gpiod)
+
+install(TARGETS LSM6DSOX_Rpi_static EXPORT LSM6DSOX_Rpi_static-targets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION bin
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+add_subdirectory(test)
