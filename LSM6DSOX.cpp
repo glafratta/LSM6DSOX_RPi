@@ -74,8 +74,15 @@ int LSM6DSOX::getData(){
 GyroscopeData LSM6DSOX::readGyro(){
     GyroscopeData gd;
     uint8_t tmp[32]; //test if data is 8 bit
-    // try{
-    //     //xgreadbytes
-    // }
+    try{
+        contiguousReadBytes(LSM6DSOX_OUTX_L_G, tmp, 6);//read 6 bytes from outx_l_g
+    }
+    catch (int fError){
+        gd.x=gd.y=gd.z=9999;
+    }
     return gd;
+}
+
+void LSM6DSOX::contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes){
+
 }

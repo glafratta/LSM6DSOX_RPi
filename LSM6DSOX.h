@@ -64,8 +64,14 @@ class LSM6DSOX{
     int getData();
    // int i2cOpen();
 
-   GyroscopeData readGyro();
+    GyroscopeData readGyro();
 
-    
+    /**
+    * @brief reads bytes contiguously from the given address
+    * @param address starting address
+    * @param container array to which values will be written
+    * @param nBytes number of bytes to read
+    */
+    void contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes);
 };
 #endif

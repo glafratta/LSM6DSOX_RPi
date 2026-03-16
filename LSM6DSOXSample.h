@@ -12,6 +12,7 @@ struct AccelerometerData{
     float z=0;
 };
 
+
 struct LSM6DSOXSample{
     /**
     * Acceleration on x axis (m^2/s)
