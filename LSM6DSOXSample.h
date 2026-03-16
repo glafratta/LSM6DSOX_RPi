@@ -4,13 +4,13 @@ struct GyroscopeData{
     float x=0;
     float y=0;
     float z=0;
-}
+};
 
 struct AccelerometerData{
     float x=0;
     float y=0;
     float z=0;
-}
+};
 
 struct LSM6DSOXSample{
     /**

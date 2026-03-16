@@ -4,7 +4,7 @@
 CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   LSM6DSOX.h \
   LSM6DSOXSample.h \
-  lsm6dsox_reg.h \
+  LSM6DSOX_Registers.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
   /usr/include/aarch64-linux-gnu/bits/cpu-set.h \
@@ -13,21 +13,11 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/include/aarch64-linux-gnu/bits/errno.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
-  /usr/include/aarch64-linux-gnu/bits/flt-eval-method.h \
-  /usr/include/aarch64-linux-gnu/bits/fp-fast.h \
-  /usr/include/aarch64-linux-gnu/bits/fp-logb.h \
   /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
   /usr/include/aarch64-linux-gnu/bits/ioctls.h \
-  /usr/include/aarch64-linux-gnu/bits/iscanonical.h \
   /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
-  /usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h \
   /usr/include/aarch64-linux-gnu/bits/locale.h \
   /usr/include/aarch64-linux-gnu/bits/long-double.h \
-  /usr/include/aarch64-linux-gnu/bits/math-vector.h \
-  /usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h \
-  /usr/include/aarch64-linux-gnu/bits/mathcalls-macros.h \
-  /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h \
-  /usr/include/aarch64-linux-gnu/bits/mathcalls.h \
   /usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h \
   /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h \
@@ -131,7 +121,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/include/c++/14/bits/range_access.h \
   /usr/include/c++/14/bits/refwrap.h \
   /usr/include/c++/14/bits/requires_hosted.h \
-  /usr/include/c++/14/bits/specfun.h \
   /usr/include/c++/14/bits/std_abs.h \
   /usr/include/c++/14/bits/std_thread.h \
   /usr/include/c++/14/bits/stl_algobase.h \
@@ -152,7 +141,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/include/c++/14/cctype \
   /usr/include/c++/14/cerrno \
   /usr/include/c++/14/clocale \
-  /usr/include/c++/14/cmath \
   /usr/include/c++/14/concepts \
   /usr/include/c++/14/cstddef \
   /usr/include/c++/14/cstdint \
@@ -169,7 +157,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iosfwd \
   /usr/include/c++/14/limits \
-  /usr/include/c++/14/math.h \
   /usr/include/c++/14/new \
   /usr/include/c++/14/pstl/pstl_config.h \
   /usr/include/c++/14/ratio \
@@ -177,18 +164,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/include/c++/14/string \
   /usr/include/c++/14/string_view \
   /usr/include/c++/14/thread \
-  /usr/include/c++/14/tr1/bessel_function.tcc \
-  /usr/include/c++/14/tr1/beta_function.tcc \
-  /usr/include/c++/14/tr1/ell_integral.tcc \
-  /usr/include/c++/14/tr1/exp_integral.tcc \
-  /usr/include/c++/14/tr1/gamma.tcc \
-  /usr/include/c++/14/tr1/hypergeometric.tcc \
-  /usr/include/c++/14/tr1/legendre_function.tcc \
-  /usr/include/c++/14/tr1/modified_bessel_func.tcc \
-  /usr/include/c++/14/tr1/poly_hermite.tcc \
-  /usr/include/c++/14/tr1/poly_laguerre.tcc \
-  /usr/include/c++/14/tr1/riemann_zeta.tcc \
-  /usr/include/c++/14/tr1/special_function_util.h \
   /usr/include/c++/14/tuple \
   /usr/include/c++/14/type_traits \
   /usr/include/ctype.h \
@@ -205,7 +180,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
-  /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
@@ -225,6 +199,42 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
   /usr/lib/linux/uapi/arm64/asm/posix_types.h \
   /usr/lib/linux/uapi/arm64/asm/types.h
 
+libLSM6DSOX_Rpi.so: /lib/aarch64-linux-gnu/libc.so.6 \
+  /lib/aarch64-linux-gnu/libm.so.6 \
+  /lib/aarch64-linux-gnu/libmvec.so.1 \
+  /lib/ld-linux-aarch64.so.1 \
+  /usr/lib/aarch64-linux-gnu/libc_nonshared.a \
+  /usr/lib/aarch64-linux-gnu/crti.o \
+  /usr/lib/aarch64-linux-gnu/crtn.o \
+  /usr/lib/aarch64-linux-gnu/libc.so \
+  /usr/lib/aarch64-linux-gnu/libgcc_s.so.1 \
+  /usr/lib/aarch64-linux-gnu/libgpiod.so \
+  /usr/lib/aarch64-linux-gnu/libm.so \
+  /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
+  /usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o \
+  /usr/lib/gcc/aarch64-linux-gnu/14/libgcc.a \
+  /usr/lib/gcc/aarch64-linux-gnu/14/libgcc_s.so \
+  /usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so \
+  CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o
+
+
+/usr/lib/gcc/aarch64-linux-gnu/14/libgcc_s.so:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/libgcc.a:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o:
+
+/usr/lib/aarch64-linux-gnu/libm.so:
+
+/usr/lib/aarch64-linux-gnu/libgpiod.so:
+
+/usr/lib/aarch64-linux-gnu/libgcc_s.so.1:
+
+/usr/lib/aarch64-linux-gnu/crtn.o:
+
+/usr/lib/aarch64-linux-gnu/crti.o:
 
 /usr/lib/linux/uapi/arm64/asm/ioctl.h:
 
@@ -238,8 +248,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 
 /usr/include/stdio.h:
 
-/usr/include/math.h:
-
 /usr/include/locale.h:
 
 /usr/include/linux/sched/types.h:
@@ -249,6 +257,8 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 /usr/include/linux/types.h:
 
 /usr/include/linux/ioctl.h:
+
+/lib/ld-linux-aarch64.so.1:
 
 /usr/include/linux/i2c-dev.h:
 
@@ -262,17 +272,7 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 
 /usr/include/c++/14/tuple:
 
-/usr/include/c++/14/tr1/poly_hermite.tcc:
-
-/usr/include/c++/14/tr1/modified_bessel_func.tcc:
-
-/usr/include/c++/14/tr1/gamma.tcc:
-
-/usr/include/c++/14/tr1/exp_integral.tcc:
-
 /usr/include/c++/14/thread:
-
-/usr/include/c++/14/tr1/poly_laguerre.tcc:
 
 /usr/include/c++/14/string_view:
 
@@ -281,8 +281,6 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 /usr/include/linux/stddef.h:
 
 /usr/include/c++/14/new:
-
-/usr/include/c++/14/math.h:
 
 /usr/include/c++/14/iosfwd:
 
@@ -301,6 +299,8 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 /usr/include/c++/14/debug/debug.h:
 
 /usr/include/c++/14/debug/assertions.h:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o:
 
 /usr/include/c++/14/ctime:
 
@@ -326,27 +326,19 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 
 /usr/include/c++/14/bits/stl_iterator_base_types.h:
 
-/usr/include/c++/14/ext/numeric_traits.h:
+/usr/include/aarch64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/c++/14/bits/stl_iterator_base_funcs.h:
+/usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/c++/14/bits/stl_function.h:
-
-/usr/include/c++/14/bits/stl_construct.h:
-
-/usr/include/c++/14/bits/std_thread.h:
-
-/usr/include/c++/14/pstl/pstl_config.h:
-
-/usr/include/c++/14/bits/std_abs.h:
-
-/usr/include/c++/14/bits/requires_hosted.h:
+/usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
 
 /usr/lib/linux/uapi/arm64/asm/posix_types.h:
 
 /usr/include/c++/14/bits/refwrap.h:
 
-/usr/include/c++/14/bits/range_access.h:
+/usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/c++/14/bits/stl_construct.h:
 
 /usr/include/linux/errno.h:
 
@@ -356,59 +348,71 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o: LSM6DSOX.cpp \
 
 /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
 
+/lib/aarch64-linux-gnu/libmvec.so.1:
+
+/lib/aarch64-linux-gnu/libm.so.6:
+
 /usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/c++/14/bits/postypes.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h:
 
 LSM6DSOX.cpp:
 
+/lib/aarch64-linux-gnu/libc.so.6:
+
 /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/c++/14/bits/memoryfwd.h:
 
+/usr/lib/linux/uapi/arm64/asm/types.h:
+
+/usr/include/c++/14/stdlib.h:
+
+/usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
+
 /usr/include/aarch64-linux-gnu/bits/types/FILE.h:
 
-/usr/include/c++/14/ratio:
+/usr/include/c++/14/backward/binders.h:
 
-/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
+/usr/include/c++/14/ext/alloc_traits.h:
 
-/usr/include/c++/14/tr1/ell_integral.tcc:
+/usr/include/aarch64-linux-gnu/bits/ioctl-types.h:
 
-/usr/include/aarch64-linux-gnu/bits/time.h:
+/usr/include/aarch64-linux-gnu/c++/14/bits/gthr-default.h:
 
-/usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
+/usr/include/c++/14/cwchar:
 
-/usr/include/aarch64-linux-gnu/bits/types.h:
+/usr/include/c++/14/bits/charconv.h:
 
-/usr/include/aarch64-linux-gnu/bits/setjmp.h:
+/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 
-/usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
+/usr/include/c++/14/cstdio:
 
-/usr/include/aarch64-linux-gnu/bits/fp-logb.h:
+/usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
 
-/usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
+/usr/include/aarch64-linux-gnu/bits/stdint-uintn.h:
 
-/usr/include/c++/14/bits/allocator.h:
+/usr/include/c++/14/pstl/pstl_config.h:
 
-/usr/include/aarch64-linux-gnu/bits/sched.h:
-
-/usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
-
-/usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+/usr/include/c++/14/bits/std_abs.h:
 
 /usr/include/aarch64-linux-gnu/bits/errno.h:
 
+/usr/include/asm-generic/int-ll64.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/timer_t.h:
+
 /usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
 
-/usr/include/aarch64-linux-gnu/bits/fp-fast.h:
-
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/c++/14/tr1/legendre_function.tcc:
 
 /usr/include/c++/14/bits/exception_defines.h:
 
@@ -422,45 +426,71 @@ LSM6DSOX.cpp:
 
 /usr/include/aarch64-linux-gnu/bits/timex.h:
 
+/usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/stdint.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
+/usr/include/c++/14/bits/cxxabi_forced.h:
+
+/usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/c++/14/bits/allocator.h:
+
 /usr/include/stdlib.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/c++config.h:
 
+CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o:
+
 /usr/include/aarch64-linux-gnu/bits/byteswap.h:
+
+/usr/lib/aarch64-linux-gnu/libc_nonshared.a:
 
 /usr/include/aarch64-linux-gnu/bits/endian.h:
 
-/usr/include/c++/14/cstdio:
-
-/usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/c++/14/bits/alloc_traits.h:
-
 /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/c++/14/bits/range_access.h:
+
+/usr/include/aarch64-linux-gnu/bits/sched.h:
+
+/usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+LSM6DSOX_Registers.h:
+
+/usr/include/aarch64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/c++/14/bits/move.h:
 
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
 
 /usr/include/aarch64-linux-gnu/bits/select.h:
 
-/usr/include/c++/14/ext/alloc_traits.h:
+/usr/include/linux/posix_types.h:
 
-/usr/include/aarch64-linux-gnu/bits/ioctl-types.h:
+LSM6DSOX.h:
 
-/usr/include/aarch64-linux-gnu/c++/14/bits/gthr-default.h:
+/usr/include/stdc-predef.h:
 
-/usr/include/c++/14/cwchar:
+/usr/include/asm-generic/posix_types.h:
 
-/usr/include/c++/14/bits/charconv.h:
+/usr/include/aarch64-linux-gnu/bits/time.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/c++/14/ratio:
+
+/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/__mbstate_t.h:
 
 /usr/include/ctype.h:
 
 /usr/include/aarch64-linux-gnu/bits/endianness.h:
-
-/usr/include/c++/14/tr1/riemann_zeta.tcc:
 
 /usr/include/c++/14/bits/basic_string.h:
 
@@ -470,91 +500,27 @@ LSM6DSOXSample.h:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h:
 
-/usr/include/c++/14/tr1/special_function_util.h:
+/usr/include/asm-generic/ioctls.h:
+
+/usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h:
 
 /usr/include/aarch64-linux-gnu/bits/stdint-least.h:
 
 /usr/include/aarch64-linux-gnu/sys/select.h:
 
-/usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h:
-
-/usr/include/c++/14/bits/functional_hash.h:
-
-/usr/include/linux/posix_types.h:
-
-LSM6DSOX.h:
-
-/usr/include/stdc-predef.h:
-
-/usr/include/c++/14/tr1/bessel_function.tcc:
-
-/usr/include/asm-generic/posix_types.h:
-
-/usr/lib/linux/uapi/arm64/asm/types.h:
-
-/usr/include/c++/14/stdlib.h:
-
-/usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h:
-
-/usr/include/aarch64-linux-gnu/bits/math-vector.h:
-
-/usr/include/pthread.h:
-
-/usr/include/c++/14/bits/functexcept.h:
-
 /usr/include/c++/14/bits/uses_allocator_args.h:
 
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
 
-/usr/include/c++/14/backward/binders.h:
+/usr/include/aarch64-linux-gnu/bits/types.h:
 
-/usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h:
+/usr/include/aarch64-linux-gnu/bits/setjmp.h:
 
-/usr/include/asm-generic/ioctls.h:
-
-/usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
-
-/usr/include/c++/14/tr1/beta_function.tcc:
-
-/usr/include/c++/14/bits/postypes.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/stdint.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/c++/14/bits/cxxabi_forced.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
-
-/usr/include/aarch64-linux-gnu/bits/mathcalls.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/c++/14/bits/specfun.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/timer_t.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/include/aarch64-linux-gnu/bits/iscanonical.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/time_t.h:
+/usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/os_defines.h:
-
-/usr/include/c++/14/tr1/hypergeometric.tcc:
 
 /usr/include/aarch64-linux-gnu/bits/stdint-intn.h:
 
@@ -576,25 +542,7 @@ LSM6DSOX.h:
 
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
 
-/usr/include/c++/14/bits/stl_iterator.h:
-
-/usr/include/c++/14/bits/stl_algobase.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/aarch64-linux-gnu/bits/wordsize.h:
-
-/usr/include/asm-generic/types.h:
-
 /usr/include/aarch64-linux-gnu/c++/14/bits/c++allocator.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/14/include/stdint.h:
-
-/usr/include/aarch64-linux-gnu/bits/long-double.h:
-
-/usr/include/c++/14/bits/concept_check.h:
-
-/usr/include/c++/14/bits/cpp_type_traits.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/c++locale.h:
 
@@ -602,11 +550,7 @@ LSM6DSOX.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/cpu_defines.h:
 
-/usr/include/aarch64-linux-gnu/bits/mathcalls-macros.h:
-
 /usr/include/aarch64-linux-gnu/sys/ioctl.h:
-
-lsm6dsox_reg.h:
 
 /usr/include/aarch64-linux-gnu/sys/ttydefaults.h:
 
@@ -628,15 +572,29 @@ lsm6dsox_reg.h:
 
 /usr/include/asm-generic/errno.h:
 
+/usr/include/c++/14/bits/stl_function.h:
+
 /usr/include/asm-generic/ioctl.h:
 
 /usr/include/c++/14/bit:
 
+/usr/include/c++/14/bits/alloc_traits.h:
+
 /usr/include/c++/14/clocale:
 
-/usr/include/aarch64-linux-gnu/bits/flt-eval-method.h:
-
 /usr/include/c++/14/bits/basic_string.tcc:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/include/stdint.h:
+
+/usr/include/aarch64-linux-gnu/bits/long-double.h:
+
+/usr/include/c++/14/bits/cpp_type_traits.h:
+
+/usr/include/c++/14/bits/concept_check.h:
+
+/usr/include/pthread.h:
+
+/usr/include/c++/14/bits/functexcept.h:
 
 /usr/include/c++/14/cctype:
 
@@ -644,9 +602,15 @@ lsm6dsox_reg.h:
 
 /usr/include/c++/14/bits/exception.h:
 
+/usr/include/c++/14/bits/functional_hash.h:
+
 /usr/include/c++/14/bits/char_traits.h:
 
 /usr/include/c++/14/bits/hash_bytes.h:
+
+/usr/lib/aarch64-linux-gnu/libc.so:
+
+/usr/include/c++/14/bits/std_thread.h:
 
 /usr/include/c++/14/bits/this_thread_sleep.h:
 
@@ -660,14 +624,24 @@ lsm6dsox_reg.h:
 
 /usr/include/c++/14/bits/memory_resource.h:
 
-/usr/include/aarch64-linux-gnu/bits/cpu-set.h:
-
-/usr/include/c++/14/bits/move.h:
-
-/usr/include/c++/14/cmath:
-
 /usr/include/aarch64-linux-gnu/bits/floatn.h:
 
 /usr/include/c++/14/bits/new_allocator.h:
 
 /usr/include/c++/14/bits/ostream_insert.h:
+
+/usr/include/c++/14/bits/requires_hosted.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/c++/14/bits/stl_iterator.h:
+
+/usr/include/aarch64-linux-gnu/bits/wordsize.h:
+
+/usr/include/asm-generic/types.h:
+
+/usr/include/c++/14/bits/stl_algobase.h:
+
+/usr/include/c++/14/ext/numeric_traits.h:
+
+/usr/include/c++/14/bits/stl_iterator_base_funcs.h:

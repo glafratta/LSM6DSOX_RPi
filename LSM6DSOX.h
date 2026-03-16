@@ -16,7 +16,7 @@ const char * DRDY_CHIP="/dev/gpiochip0";
 class LSM6DSOX{
 
     public:     
-    LSM6DSOX(const std::string& _device="/dev/i2c-1", uint8_t _address=LSM6DSOX_ID):device(_device), address(_address){}
+    LSM6DSOX(const std::string& _device="/dev/i2c-1", uint8_t _address=LSM6DSOX_ADDRESS):device(_device), address(_address){}
 
     ~LSM6DSOX();
 

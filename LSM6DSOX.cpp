@@ -74,7 +74,8 @@ int LSM6DSOX::getData(){
 GyroscopeData LSM6DSOX::readGyro(){
     GyroscopeData gd;
     uint8_t tmp[32]; //test if data is 8 bit
-    try{
-        //xgreadbytes
-    }
+    // try{
+    //     //xgreadbytes
+    // }
+    return gd;
 }
