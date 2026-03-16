@@ -1,5 +1,17 @@
 #include <stdlib.h>
 
+struct GyroscopeData{
+    float x=0;
+    float y=0;
+    float z=0;
+}
+
+struct AccelerometerData{
+    float x=0;
+    float y=0;
+    float z=0;
+}
+
 struct LSM6DSOXSample{
     /**
     * Acceleration on x axis (m^2/s)
@@ -37,3 +49,7 @@ struct LSM6DSOXSample{
     float temperature=0;
 
 };
+
+
+
+//optional add gyro/acc settings

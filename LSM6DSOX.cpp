@@ -1,10 +1,10 @@
 #include "LSM6DSOX.h"
 
 void LSM6DSOX::start(){
-    chipDRDY=gpiod_chip_open(device.c_str());
+    chipDRDY=gpiod_chip_open(DRDY_CHIP); //open data ready chip
     settings=gpiod_line_settings_new();
-    gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_INPUT); //defined in gpiod.h
-    gpiod_line_settings_set_edge_detection(settings, GPIOD_LINE_EDGE_RISING); //defined in gpiod.h
+    gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_INPUT); //input line
+    gpiod_line_settings_set_edge_detection(settings, GPIOD_LINE_EDGE_RISING); //detect rising edge
     line_cfg = gpiod_line_config_new();
     gpiod_line_config_add_line_settings(line_cfg, &LMS6DSOX_DRDY_GPIO, 1, settings); //offset is the gpio pin (22)
     req_cfg = gpiod_request_config_new();
@@ -31,6 +31,7 @@ void LSM6DSOX::worker(){
             buffer = gpiod_edge_event_buffer_new(1);
             int n = gpiod_line_request_read_edge_events(request, buffer, 1);
             if (n){
+                getData();
                 //callback goes here
                 printf("Interrupt happened!");
             }
@@ -65,3 +66,15 @@ void LSM6DSOX::stop(){
 //     //     return fd_i2c;
 //     // }
 // }
+
+int LSM6DSOX::getData(){
+    return -1;
+}
+
+GyroscopeData LSM6DSOX::readGyro(){
+    GyroscopeData gd;
+    uint8_t tmp[32]; //test if data is 8 bit
+    try{
+        //xgreadbytes
+    }
+}
