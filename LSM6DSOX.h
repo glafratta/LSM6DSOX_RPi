@@ -5,6 +5,7 @@
 #include <gpiod.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
+#include <i2c/smbus.h>
 #include <fcntl.h>
 // #include "lsm6dsox_reg.h"
 #include "LSM6DSOXSample.h"
