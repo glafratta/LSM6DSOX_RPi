@@ -5,23 +5,18 @@ const bool DEBUG=true;
 
 class LSM6DSOXTest:public LSM6DSOX, public testing::Test{};
 
-// TEST_F(LSM6DSOXTest, StartStop){
-//     start();
-//     std::this_thread::sleep_for(std::chrono::seconds(nSeconds));
-//     stop();
-// }
-
+/**
+* @brief Checks if device is LSM6DSOX 
+*/
 TEST_F(LSM6DSOXTest, whoAmI){
-   try{
-        uint8_t b=i2cReadByte(LSM6DSOX_WHO_AM_I_REG);
-        EXPECT_EQ(b, (LSM6DSOX_WHO_AM_I_ADDRESS));
-   } 
-   catch(std::exception &e){
-        std::cout<<e.what()<<std::endl;
-   }
+     uint8_t b=i2cReadByte(LSM6DSOX_WHO_AM_I_REG);
+     EXPECT_EQ(b, (LSM6DSOX_WHO_AM_I_VALUE));
 }
 
-TEST_F(LSM6DSOXTest, i2cOpen){
+/**
+* @brief Tests if data interrupt pin 1 opens and closes correctly
+*/
+TEST_F(LSM6DSOXTest, INT1Open){
     int fd=i2cOpen(LSM6DSOX_INT1_CTRL);
     EXPECT_GE(fd, 0);
     close(fd);

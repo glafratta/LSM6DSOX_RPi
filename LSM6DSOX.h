@@ -92,12 +92,21 @@ class LSM6DSOX{
     */
     int i2cOpen(int address);
 
-    void i2cWriteByte(){}
+    /**
+    @brief Writes one byte of @param data from register at @param address
+    */
+    void i2cWriteByte(uint8_t address, uint8_t data);
 
     /**
-    * @brief Reads from register at @param address
+    * @brief Reads one byte from register at @param address
     */
     uint8_t i2cReadByte(uint8_t address);
+
+    /**
+    * @brief Enable data along the gyroscope axes
+    */
+    int initGyro();
+
 
 };
 #endif

@@ -1,8 +1,6 @@
 #include "LSM6DSOX.h"
 
 void LSM6DSOX::start(){
-    //need to set drdy pin to go high for accelerometer and gyroscope
-
     //setup to detect rising edge on the data ready pin
     chipDRDY=gpiod_chip_open(DRDY_CHIP); //open chip with the gpio pins
     settings=gpiod_line_settings_new();
@@ -19,6 +17,10 @@ void LSM6DSOX::start(){
         gpiod_line_request_release(request);
         throw "Could not request event";
     }
+
+    //need to set drdy pin to go high for accelerometer and gyroscope
+    uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
+    i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
     if (DEBUG){
@@ -34,8 +36,6 @@ void LSM6DSOX::worker(){
             std::cout<<"Edge event code:"<<r<<std::endl;
         }
         if (r>0){
-            // struct gpiod_line_event event;
-            // gpiod_line_event_read(pinDRDY, &event);
             struct gpiod_edge_event_buffer *buffer;
             buffer = gpiod_edge_event_buffer_new(1);
             int n = gpiod_line_request_read_edge_events(request, buffer, 1);
@@ -109,6 +109,16 @@ int LSM6DSOX::i2cOpen(int address){
     return fd;
 }
 
+void LSM6DSOX::i2cWriteByte(uint8_t address, uint8_t data){
+    int fd=i2cOpen(LSM6DSOX_ADDRESS); //open device chip first
+    uint8_t buffer[3];
+    buffer[0]=address;
+    buffer[1]=data;
+    ssize_t w=write(fd, buffer, 2);
+    close(fd);
+}
+
+
 uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
     int fd=i2cOpen(LSM6DSOX_ADDRESS); //open device chip first
     uint8_t buffer[1];
@@ -122,4 +132,6 @@ uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
     return buffer[0];
 }
 
+int LSM6DSOX::initGyro(){
 
+}
