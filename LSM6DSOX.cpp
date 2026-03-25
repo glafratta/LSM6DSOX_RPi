@@ -50,7 +50,7 @@ void LSM6DSOX::worker(){
             gpiod_edge_event_buffer_free(buffer);
         }
         else{
-            running=false;
+            running=false; //need to delete this once you start getting data
         }
     }
 
@@ -132,6 +132,6 @@ uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
     return buffer[0];
 }
 
-int LSM6DSOX::initGyro(){
+void LSM6DSOX::initGyro(){
 
 }
