@@ -6,9 +6,9 @@ project(LSM6DSOX_Rpi VERSION 1.0.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
-file(GLOB src "*.cpp")
+file(GLOB src "LSM*.cpp")
 
-file(GLOB include "*.h")
+file(GLOB include "LSM*.h")
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -25,18 +25,6 @@ install(TARGETS LSM6DSOX_Rpi EXPORT LSM6DSOX_Rpi-targets
 
 message("library and archive destination " ${CMAKE_INSTALL_LIBDIR})
 
-add_library(LSM6DSOX_Rpi_static STATIC ${src})
-
-set_target_properties(LSM6DSOX_Rpi_static PROPERTIES POSITION_INDEPENDENT_CODE TRUE PUBLIC_HEADER "${include}")
-
-target_link_libraries(LSM6DSOX_Rpi_static gpiod)
-
-install(TARGETS LSM6DSOX_Rpi_static EXPORT LSM6DSOX_Rpi_static-targets
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION bin
-  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-
-add_executable(main main.cpp)
-target_link_libraries(main LSM6DSOX_Rpi)
 add_subdirectory(test)
+
+set(CMAKE_BUILD_TYPE Debug)

@@ -6,5 +6,5 @@ CXX_DEFINES = -DLSM6DSOX_Rpi_EXPORTS
 
 CXX_INCLUDES = 
 
-CXX_FLAGS = -std=gnu++17 -fPIC
+CXX_FLAGS = -g -std=gnu++17 -fPIC
 

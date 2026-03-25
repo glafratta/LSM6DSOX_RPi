@@ -13,13 +13,12 @@ message(STATUS "GTest include dirs: ${GTEST_INCLUDE_DIRS}")
 
 
 add_executable(unit_test unit_test.cpp)
-link_directories(/usr/local/lib)
 target_link_libraries(unit_test LSM6DSOX_Rpi)
 target_link_libraries(unit_test gtest gtest_main)
 
+add_executable(main main.cpp)
+target_link_libraries(main LSM6DSOX_Rpi)
 
 gtest_discover_tests(unit_test)
 
-set(CMAKE_BUILD_TYPE Debug)
-
-#add_compile_options(-Wall -pedantic)
+add_compile_options(-Wall -pedantic)

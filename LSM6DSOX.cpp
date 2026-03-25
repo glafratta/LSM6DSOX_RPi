@@ -113,11 +113,10 @@ uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
     int fd=i2cOpen(address);
     uint8_t tmp[2];
     tmp[0]=address;
-    write(fd, &tmp, 1);
+    long int w=write(fd, &tmp, 1);
     long int r= read(fd, tmp, 1);
     if (r<0){
-        std::cout<< "Can't read from i2c";
-        return r;
+        std::cout<< "Can't read from i2c"<<std::endl;
     }
     close(fd);
     return tmp[0];

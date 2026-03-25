@@ -71,8 +71,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/LSM6DSOX_Rpi.dir/DependInfo.cmake"
-  "CMakeFiles/LSM6DSOX_Rpi_static.dir/DependInfo.cmake"
-  "CMakeFiles/main.dir/DependInfo.cmake"
   "test/CMakeFiles/Experimental.dir/DependInfo.cmake"
   "test/CMakeFiles/Nightly.dir/DependInfo.cmake"
   "test/CMakeFiles/Continuous.dir/DependInfo.cmake"
@@ -102,4 +100,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "test/CMakeFiles/ContinuousMemCheck.dir/DependInfo.cmake"
   "test/CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake"
   "test/CMakeFiles/unit_test.dir/DependInfo.cmake"
+  "test/CMakeFiles/main.dir/DependInfo.cmake"
   )

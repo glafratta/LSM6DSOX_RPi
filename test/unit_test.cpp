@@ -13,10 +13,12 @@ class LSM6DSOXTest:public LSM6DSOX, public testing::Test{};
 
 TEST_F(LSM6DSOXTest, whoAmI){
    try{
-        EXPECT_EQ(i2cReadByte(LSM6DSOX_WHO_AM_I_REG), LSM6DSOX_ADDRESS);
+        uint8_t b=i2cReadByte(LSM6DSOX_WHO_AM_I_REG);
+        uint8_t b2=(b)<<8;
+        EXPECT_EQ(b2, (LSM6DSOX_ADDRESS)<<8);
    } 
-   catch(char * error){
-        std::cout<<error<<std::endl;
+   catch(std::exception &e){
+        std::cout<<e.what()<<std::endl;
    }
 }
 

@@ -1,6 +1,4 @@
 /home/autism/LSM6DSOX_RPi/CMakeFiles/LSM6DSOX_Rpi.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/LSM6DSOX_Rpi_static.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/main.dir
 /home/autism/LSM6DSOX_RPi/CMakeFiles/edit_cache.dir
 /home/autism/LSM6DSOX_RPi/CMakeFiles/rebuild_cache.dir
 /home/autism/LSM6DSOX_RPi/CMakeFiles/list_install_components.dir
@@ -36,6 +34,7 @@
 /home/autism/LSM6DSOX_RPi/test/CMakeFiles/ContinuousMemCheck.dir
 /home/autism/LSM6DSOX_RPi/test/CMakeFiles/ContinuousSubmit.dir
 /home/autism/LSM6DSOX_RPi/test/CMakeFiles/unit_test.dir
+/home/autism/LSM6DSOX_RPi/test/CMakeFiles/main.dir
 /home/autism/LSM6DSOX_RPi/test/CMakeFiles/edit_cache.dir
 /home/autism/LSM6DSOX_RPi/test/CMakeFiles/rebuild_cache.dir
 /home/autism/LSM6DSOX_RPi/test/CMakeFiles/list_install_components.dir
