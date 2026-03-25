@@ -110,15 +110,14 @@ int LSM6DSOX::i2cOpen(int address){
 }
 
 uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
-    int fd=i2cOpen(LSM6DSOX_ADDRESS);
-    uint8_t buffer[2];
+    int fd=i2cOpen(LSM6DSOX_ADDRESS); //open device chip first
+    uint8_t buffer[1];
     buffer[0]=address;
-    ssize_t w=write(fd, buffer, 1);
+    ssize_t w=write(fd, buffer, 1); //test write
     // if (w<0){
     //     perror("Write failed!\n");
     // }
     ssize_t r= read(fd, buffer, 1); //read one byte and write to tmp buffer
-   // long int r=i2c_smbus_read_byte_data(fd, address);
     if (r<0){
         std::cout<< "Can't read from i2c"<<std::endl;
     }

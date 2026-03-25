@@ -6,6 +6,7 @@
 
 #define LSM6DSOX_ADDRESS            0x6A
 
+#define LSM6DSOX_WHO_AM_I_ADDRESS   0x6C
 #define LSM6DSOX_WHO_AM_I_REG       0X0F
 #define LSM6DSOX_CTRL1_XL           0X10
 #define LSM6DSOX_CTRL2_G            0X11
