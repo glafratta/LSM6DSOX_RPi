@@ -133,5 +133,5 @@ uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
 }
 
 void LSM6DSOX::initGyro(){
-
+    i2cWriteByte(LSM6DSOX_CTRL2_G, 0X00);
 }
