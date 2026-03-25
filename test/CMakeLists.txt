@@ -13,11 +13,13 @@ message(STATUS "GTest include dirs: ${GTEST_INCLUDE_DIRS}")
 
 
 add_executable(unit_test unit_test.cpp)
-target_link_libraries(unit_test LSM6DSOX_Rpi)
+link_directories(/usr/local/lib)
+link_directories(/usr/local/include)
+target_link_libraries(unit_test LSM6DSOX_Rpi i2c)
 target_link_libraries(unit_test gtest gtest_main)
 
 add_executable(main main.cpp)
-target_link_libraries(main LSM6DSOX_Rpi)
+target_link_libraries(main LSM6DSOX_Rpi i2c)
 
 gtest_discover_tests(unit_test)
 

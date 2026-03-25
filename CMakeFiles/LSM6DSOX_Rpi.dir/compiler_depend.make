@@ -256,6 +256,7 @@ libLSM6DSOX_Rpi.so: /lib/aarch64-linux-gnu/libc.so.6 \
   /usr/lib/aarch64-linux-gnu/libc.so \
   /usr/lib/aarch64-linux-gnu/libgcc_s.so.1 \
   /usr/lib/aarch64-linux-gnu/libgpiod.so \
+  /usr/lib/aarch64-linux-gnu/libi2c.so \
   /usr/lib/aarch64-linux-gnu/libm.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o \
@@ -343,6 +344,10 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o:
 
 /usr/include/c++/14/bits/parse_numbers.h:
 
+/usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o:
+
+/usr/include/aarch64-linux-gnu/bits/uintn-identity.h:
+
 /usr/include/c++/14/bits/cpp_type_traits.h:
 
 /usr/include/aarch64-linux-gnu/bits/stdint-intn.h:
@@ -418,6 +423,8 @@ CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o:
 /usr/include/c++/14/bits/exception_ptr.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/FILE.h:
+
+/usr/lib/aarch64-linux-gnu/libi2c.so:
 
 LSM6DSOXSample.h:
 
@@ -678,10 +685,6 @@ LSM6DSOX.cpp:
 /usr/include/c++/14/ext/numeric_traits.h:
 
 /usr/include/c++/14/ctime:
-
-/usr/include/aarch64-linux-gnu/bits/uintn-identity.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o:
 
 /usr/include/c++/14/cwctype:
 

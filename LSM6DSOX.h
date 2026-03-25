@@ -5,7 +5,7 @@
 #include <gpiod.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
-#include <i2c/smbus.h>
+//#include <i2c/smbus.h> //system management bus
 #include <fcntl.h>
 // #include "lsm6dsox_reg.h"
 #include "LSM6DSOXSample.h"
@@ -88,11 +88,15 @@ class LSM6DSOX{
 
     /**
     * @brief Opens i2c device at a certain @param address. Throws exceptions
+    * Address is the chip address!!! 
     */
     int i2cOpen(int address);
 
     void i2cWriteByte(){}
 
+    /**
+    * @brief Reads from register at @param address
+    */
     uint8_t i2cReadByte(uint8_t address);
 
 };

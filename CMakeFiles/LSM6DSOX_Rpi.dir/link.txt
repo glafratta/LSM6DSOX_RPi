@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -g -Wl,--dependency-file=CMakeFiles/LSM6DSOX_Rpi.dir/link.d -shared -Wl,-soname,libLSM6DSOX_Rpi.so -o libLSM6DSOX_Rpi.so CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o  -lgpiod
+/usr/bin/c++ -fPIC -g -Wl,--dependency-file=CMakeFiles/LSM6DSOX_Rpi.dir/link.d -shared -Wl,-soname,libLSM6DSOX_Rpi.so -o libLSM6DSOX_Rpi.so CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o  -li2c -lgpiod
