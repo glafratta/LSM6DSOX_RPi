@@ -22,3 +22,5 @@ target_link_libraries(main LSM6DSOX_Rpi)
 gtest_discover_tests(unit_test)
 
 add_compile_options(-Wall -pedantic)
+
+set(CMAKE_BUILD_TYPE Debug)
