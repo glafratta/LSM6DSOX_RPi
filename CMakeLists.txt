@@ -37,4 +37,6 @@ install(TARGETS LSM6DSOX_Rpi_static EXPORT LSM6DSOX_Rpi_static-targets
   RUNTIME DESTINATION bin
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
+add_executable(main main.cpp)
+target_link_libraries(main LSM6DSOX_Rpi)
 add_subdirectory(test)

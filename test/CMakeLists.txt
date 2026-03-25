@@ -22,4 +22,4 @@ gtest_discover_tests(unit_test)
 
 set(CMAKE_BUILD_TYPE Debug)
 
-add_compile_options(-Wall -pedantic)
+#add_compile_options(-Wall -pedantic)

@@ -10,3 +10,18 @@ class LSM6DSOXTest:public LSM6DSOX, public testing::Test{};
 //     std::this_thread::sleep_for(std::chrono::seconds(nSeconds));
 //     stop();
 // }
+
+TEST_F(LSM6DSOXTest, whoAmI){
+   try{
+        EXPECT_EQ(i2cReadByte(LSM6DSOX_WHO_AM_I_REG), LSM6DSOX_ADDRESS);
+   } 
+   catch(char * error){
+        std::cout<<error<<std::endl;
+   }
+}
+
+TEST_F(LSM6DSOXTest, i2cOpen){
+    int fd=i2cOpen(LSM6DSOX_INT1_CTRL);
+    EXPECT_GE(fd, 0);
+    close(fd);
+}

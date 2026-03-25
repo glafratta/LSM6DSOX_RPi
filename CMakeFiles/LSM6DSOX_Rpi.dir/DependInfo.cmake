@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/autism/LSM6DSOX_RPi/LSM6DSOX.cpp" "CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o" "gcc" "CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o.d"
+  "/home/autism/LSM6DSOX_RPi/main.cpp" "CMakeFiles/LSM6DSOX_Rpi.dir/main.cpp.o" "gcc" "CMakeFiles/LSM6DSOX_Rpi.dir/main.cpp.o.d"
   "" "libLSM6DSOX_Rpi.so" "gcc" "CMakeFiles/LSM6DSOX_Rpi.dir/link.d"
   )
 

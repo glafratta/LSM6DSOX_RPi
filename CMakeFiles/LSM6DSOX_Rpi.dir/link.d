@@ -2,6 +2,7 @@ libLSM6DSOX_Rpi.so: \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crti.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o \
+  CMakeFiles/LSM6DSOX_Rpi.dir/main.cpp.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libgpiod.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libm.so \
@@ -33,6 +34,8 @@ libLSM6DSOX_Rpi.so: \
 /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o:
 
 CMakeFiles/LSM6DSOX_Rpi.dir/LSM6DSOX.cpp.o:
+
+CMakeFiles/LSM6DSOX_Rpi.dir/main.cpp.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libgpiod.so:
 

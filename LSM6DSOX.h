@@ -1,9 +1,11 @@
 #include <stdlib.h>
+#include <unistd.h>
 #include <iostream>
 #include <thread>
 #include <gpiod.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
+#include <fcntl.h>
 // #include "lsm6dsox_reg.h"
 #include "LSM6DSOXSample.h"
 #include "LSM6DSOX_Registers.h"
@@ -40,7 +42,7 @@ class LSM6DSOX{
         virtual void hasSample(LSM6DSOXSample sample)=0; 
     };
 
-    private:
+    protected:
     std::string device; //device file
     uint8_t address=0;// chip address
     std::thread thread;
@@ -83,6 +85,14 @@ class LSM6DSOX{
     */
     uint8_t wait_line=-1; 
 
-    void i2cOpen(int bus, int address);
+    /**
+    * @brief Opens i2c device at a certain @param address. Throws exceptions
+    */
+    int i2cOpen(int address);
+
+    void i2cWriteByte(){}
+
+    uint8_t i2cReadByte(uint8_t address);
+
 };
 #endif

@@ -1,6 +1,9 @@
 #include "LSM6DSOX.h"
 
 void LSM6DSOX::start(){
+    //need to set drdy pin to go high for accelerometer and gyroscope
+
+    //setup to detect rising edge on the data ready pin
     chipDRDY=gpiod_chip_open(DRDY_CHIP); //open chip with the gpio pins
     settings=gpiod_line_settings_new();
     gpiod_line_settings_set_direction(settings, GPIOD_LINE_DIRECTION_INPUT); //input line
@@ -16,6 +19,7 @@ void LSM6DSOX::start(){
         gpiod_line_request_release(request);
         throw "Could not request event";
     }
+    //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
     if (DEBUG){
         std::cout<<"Started!"<<std::endl;
@@ -70,12 +74,6 @@ void LSM6DSOX::stop(){
     chipDRDY = NULL;
 }
 
-// int LSM6DSOX::i2cOpen(){
-//     // const int fd_i2c=open(device, O_RDWR); //open i2c device
-//     // if (fd_i2c<0){
-//     //     return fd_i2c;
-//     // }
-// }
 
 int LSM6DSOX::getData(){
     return -1;
@@ -97,12 +95,32 @@ void LSM6DSOX::contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t
 
 }
 
-void LSM6DSOX::i2cOpen(int bus, int address){
-    const int fd=open(device, O_RDWR);
+int LSM6DSOX::i2cOpen(int address){
+    const int fd=open(device.c_str(), O_RDWR);
     if (fd<0){
-        throw "Can't open I2C device"
+        throw "Can't open I2C device";
     }
     //I2C_SLAVE comes from linux kernel driver, no need to define
+    //assign address as i2c peripheral (slave)
     const int r=ioctl(fd, I2C_SLAVE, address);
-    
+    if (r<0){
+        throw "Cannot assign I2C peripheral address";
+    }
+    return fd;
 }
+
+uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
+    int fd=i2cOpen(address);
+    uint8_t tmp[2];
+    tmp[0]=address;
+    write(fd, &tmp, 1);
+    long int r= read(fd, tmp, 1);
+    if (r<0){
+        std::cout<< "Can't read from i2c";
+        return r;
+    }
+    close(fd);
+    return tmp[0];
+}
+
+

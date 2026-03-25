@@ -65,12 +65,14 @@ CMAKE_BINARY_DIR = /home/autism/LSM6DSOX_RPi
 # The main recursive "all" target.
 all: CMakeFiles/LSM6DSOX_Rpi.dir/all
 all: CMakeFiles/LSM6DSOX_Rpi_static.dir/all
+all: CMakeFiles/main.dir/all
 all: test/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/LSM6DSOX_Rpi.dir/codegen
 codegen: CMakeFiles/LSM6DSOX_Rpi_static.dir/codegen
+codegen: CMakeFiles/main.dir/codegen
 codegen: test/codegen
 .PHONY : codegen
 
@@ -81,6 +83,7 @@ preinstall: test/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/LSM6DSOX_Rpi.dir/clean
 clean: CMakeFiles/LSM6DSOX_Rpi_static.dir/clean
+clean: CMakeFiles/main.dir/clean
 clean: test/clean
 .PHONY : clean
 
@@ -138,12 +141,12 @@ test/clean: test/CMakeFiles/unit_test.dir/clean
 CMakeFiles/LSM6DSOX_Rpi.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi.dir/build.make CMakeFiles/LSM6DSOX_Rpi.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi.dir/build.make CMakeFiles/LSM6DSOX_Rpi.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=1,2 "Built target LSM6DSOX_Rpi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=1,2,3 "Built target LSM6DSOX_Rpi"
 .PHONY : CMakeFiles/LSM6DSOX_Rpi.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LSM6DSOX_Rpi.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/LSM6DSOX_Rpi.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 0
 .PHONY : CMakeFiles/LSM6DSOX_Rpi.dir/rule
@@ -155,7 +158,7 @@ LSM6DSOX_Rpi: CMakeFiles/LSM6DSOX_Rpi.dir/rule
 # codegen rule for target.
 CMakeFiles/LSM6DSOX_Rpi.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi.dir/build.make CMakeFiles/LSM6DSOX_Rpi.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=1,2 "Finished codegen for target LSM6DSOX_Rpi"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=1,2,3 "Finished codegen for target LSM6DSOX_Rpi"
 .PHONY : CMakeFiles/LSM6DSOX_Rpi.dir/codegen
 
 # clean rule for target.
@@ -170,12 +173,12 @@ CMakeFiles/LSM6DSOX_Rpi.dir/clean:
 CMakeFiles/LSM6DSOX_Rpi_static.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi_static.dir/build.make CMakeFiles/LSM6DSOX_Rpi_static.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi_static.dir/build.make CMakeFiles/LSM6DSOX_Rpi_static.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=3,4 "Built target LSM6DSOX_Rpi_static"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=4,5,6 "Built target LSM6DSOX_Rpi_static"
 .PHONY : CMakeFiles/LSM6DSOX_Rpi_static.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/LSM6DSOX_Rpi_static.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/LSM6DSOX_Rpi_static.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 0
 .PHONY : CMakeFiles/LSM6DSOX_Rpi_static.dir/rule
@@ -187,13 +190,45 @@ LSM6DSOX_Rpi_static: CMakeFiles/LSM6DSOX_Rpi_static.dir/rule
 # codegen rule for target.
 CMakeFiles/LSM6DSOX_Rpi_static.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi_static.dir/build.make CMakeFiles/LSM6DSOX_Rpi_static.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=3,4 "Finished codegen for target LSM6DSOX_Rpi_static"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=4,5,6 "Finished codegen for target LSM6DSOX_Rpi_static"
 .PHONY : CMakeFiles/LSM6DSOX_Rpi_static.dir/codegen
 
 # clean rule for target.
 CMakeFiles/LSM6DSOX_Rpi_static.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/LSM6DSOX_Rpi_static.dir/build.make CMakeFiles/LSM6DSOX_Rpi_static.dir/clean
 .PHONY : CMakeFiles/LSM6DSOX_Rpi_static.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/main.dir
+
+# All Build rule for target.
+CMakeFiles/main.dir/all: CMakeFiles/LSM6DSOX_Rpi.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=7,8 "Built target main"
+.PHONY : CMakeFiles/main.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/main.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 0
+.PHONY : CMakeFiles/main.dir/rule
+
+# Convenience name for target.
+main: CMakeFiles/main.dir/rule
+.PHONY : main
+
+# codegen rule for target.
+CMakeFiles/main.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=7,8 "Finished codegen for target main"
+.PHONY : CMakeFiles/main.dir/codegen
+
+# clean rule for target.
+CMakeFiles/main.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/clean
+.PHONY : CMakeFiles/main.dir/clean
 
 #=============================================================================
 # Target rules for target test/CMakeFiles/Experimental.dir
@@ -1098,12 +1133,12 @@ test/CMakeFiles/ContinuousSubmit.dir/clean:
 test/CMakeFiles/unit_test.dir/all: CMakeFiles/LSM6DSOX_Rpi.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/unit_test.dir/build.make test/CMakeFiles/unit_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/unit_test.dir/build.make test/CMakeFiles/unit_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=5,6 "Built target unit_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=9,10 "Built target unit_test"
 .PHONY : test/CMakeFiles/unit_test.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/unit_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/unit_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/autism/LSM6DSOX_RPi/CMakeFiles 0
 .PHONY : test/CMakeFiles/unit_test.dir/rule
@@ -1115,7 +1150,7 @@ unit_test: test/CMakeFiles/unit_test.dir/rule
 # codegen rule for target.
 test/CMakeFiles/unit_test.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/unit_test.dir/build.make test/CMakeFiles/unit_test.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=5,6 "Finished codegen for target unit_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/autism/LSM6DSOX_RPi/CMakeFiles --progress-num=9,10 "Finished codegen for target unit_test"
 .PHONY : test/CMakeFiles/unit_test.dir/codegen
 
 # clean rule for target.
