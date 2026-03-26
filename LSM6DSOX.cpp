@@ -148,5 +148,8 @@ void LSM6DSOX::initAccelerometer(){
     if (!bits){
         throw "Accelerometer is powered down!";
     }
+    if (bits==(0xF0)){
+        throw "Writing garbage to accelerometer register!";
+    }
     i2cWriteByte(LSM6DSOX_CTRL1_XL, bits); //only writing sampling rate for now
 }
