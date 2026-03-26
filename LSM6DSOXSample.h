@@ -64,7 +64,7 @@ struct XLSettings{
     /**
     * @brief Linear acceleration output data rate
     */
-    enum XL_ODR{       //LOW-POWER MODE       HIGH-PERFORMANCE MODE (set via XL_HM_MODE)
+    enum XL_ODR:uint8_t{       //LOW-POWER MODE       HIGH-PERFORMANCE MODE (set via XL_HM_MODE)
         XL_ODR_1_6=0x0B, //1.6 Hz                     12.5 Hz
         XL_ODR_12_5=0x01, //12.5                   the rest of the sampling rates are the same
         XL_ODR_26=0x02, //26 Hz

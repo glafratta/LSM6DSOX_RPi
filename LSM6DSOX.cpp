@@ -144,7 +144,7 @@ void LSM6DSOX::initAccelerometer(){
     // [ODR_XL3] [ODR_XL2] [ODR_XL1] [ODR_XL0] [FS1_XL] [FS0_XL] [LPF2_XL_EN] [0]
     uint8_t bits=0x00;
             //0x08 keeps last 4 bits (15 in binary is 00001111, hex 000f)
-    bits =(gyroSettings.samplingRate & 0x0F)<<4; //shift 4 bits back and write to ODR[3:0]
+    bits =(xlSettings.samplingRate & 0x0F)<<4; //shift 4 bits back and write to ODR[3:0]
     if (!bits){
         throw "Accelerometer is powered down!";
     }

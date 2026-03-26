@@ -47,8 +47,8 @@ class LSM6DSOX{
     std::string device; //device file
     uint8_t address=0;// chip address
     std::thread thread;
-    GyroSettings gyroSettings;
-    XLSettings xlSettings;
+    GyroSettings gyroSettings{};
+    XLSettings xlSettings{};
 
     uint8_t running=false;
 
