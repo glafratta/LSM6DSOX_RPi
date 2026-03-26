@@ -31,8 +31,9 @@ void LSM6DSOX::start(){
 
 void LSM6DSOX::worker(){
     running=true;
+    int ct=0; //for debugging
     while (running){
-        int r=gpiod_line_request_wait_edge_events(request, wait_line);
+        int r=gpiod_line_request_wait_edge_events(request, -1);
         if (DEBUG){
             std::cout<<"Edge event code:"<<r<<std::endl;
         }
@@ -50,9 +51,11 @@ void LSM6DSOX::worker(){
             }
             gpiod_edge_event_buffer_free(buffer);
         }
-        else{
+        else if (ct>1000){
+            printf("count=%i\n", ct);
             running=false; //need to delete this once you start getting data
         }
+        ct++;
     }
 
 }

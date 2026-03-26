@@ -98,7 +98,7 @@ struct GyroSettings{
         /**
     * @brief Angular rate output data rate
     */
-    enum GYRO_ODR{
+    enum GYRO_ODR{ //remember to set this :uint8_t
         GYRO_ODR_12_5=12, //12.5
         GYRO_ODR_26=26, //26 Hz
         GYRO_ODR_52=52, //52 Hz

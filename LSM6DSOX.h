@@ -86,7 +86,7 @@ class LSM6DSOX{
     * -1: wait indefinitely
     * 0: return immediately
     */
-    uint8_t wait_line=-1; 
+    int wait_line=-1; 
 
     /**
     * @brief Opens i2c device at a certain @param address. Throws exceptions

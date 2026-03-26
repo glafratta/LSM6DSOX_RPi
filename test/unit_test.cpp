@@ -21,3 +21,12 @@ TEST_F(LSM6DSOXTest, INT1Open){
     EXPECT_GE(fd, 0);
     close(fd);
 }
+
+/**
+*@brief Tests what we are writing to int1 register
+*/
+TEST_F(LSM6DSOXTest, INT1Write){
+    uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
+    i2cWriteByte(LSM6DSOX_INT1_CTRL, data);
+    EXPECT_EQ(i2cReadByte(LSM6DSOX_INT1_CTRL), 0x03);
+}
