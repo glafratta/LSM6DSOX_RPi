@@ -82,7 +82,7 @@ struct XLSettings{
         XL_POWER_DOWN, XL_ULTRALOW, XL_LOW, XL_NORMAL, XL_HIGH_PERF 
     };
 
-    XL_ODR samplingRate=XL_ODR_104;
+    XL_ODR samplingRate=XL_ODR_52;
     XL_SCALE scale=XL_2G;
 
 };

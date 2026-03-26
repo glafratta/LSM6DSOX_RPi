@@ -23,10 +23,18 @@ TEST_F(LSM6DSOXTest, INT1Open){
 }
 
 /**
-*@brief Tests what we are writing to int1 register
+*@brief Tests what we (me and the people living in the walls) are writing to int1 register
 */
 TEST_F(LSM6DSOXTest, INT1Write){
     uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
     i2cWriteByte(LSM6DSOX_INT1_CTRL, data);
     EXPECT_EQ(i2cReadByte(LSM6DSOX_INT1_CTRL), 0x03);
+}
+
+/**
+* @brief Test that the correct bits have been written to accelerometer register 
+*/
+TEST_F(LSM6DSOXTest, initAccelerometer){
+    initAccelerometer();
+    EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL1_XL), 0x30); //[0][1][0][0][0][0][0][0] =64
 }
