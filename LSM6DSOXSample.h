@@ -59,7 +59,7 @@ struct XLSettings{
     */
     enum LA_So{
         XL_2G=2, XL_4G=4, XL_8G=8, XL_16G=16
-    }
+    };
 
     /**
     * @brief Linear acceleration output data rate
@@ -76,11 +76,11 @@ struct XLSettings{
         XL_ODR_1666=1666, //1666 Hz
         XL_ODR_3332=3332, //3332 Hz
         XL_ODR_6664=6664 //6664 Hz
-    }
+    };
 
     enum XL_POWER_MODES{
         XL_POWER_DOWN, XL_ULTRALOW, XL_LOW, XL_NORMAL, XL_HIGH_PERF 
-    }
+    };
 
     XL_ODR samplingRate=XL_ODR_104;
 
@@ -93,7 +93,7 @@ struct GyroSettings{
     */
     enum G_So{
         GYRO_125_DPS=125, GYRO_250_DPS=250, GYRO_500_DPS=500, GYRO_1000_DPS=1000, GYRO_2000_DPS=2000 
-    }
+    };
 
         /**
     * @brief Angular rate output data rate
@@ -109,7 +109,7 @@ struct GyroSettings{
         GYRO_ODR_1666=1666, //1666 Hz
         GYRO_ODR_3332=3332, //3332 Hz
         GYRO_ODR_6664=6664 //6664 Hz
-    }
+    };
 
     GYRO_ODR samplingRate=GYRO_ODR_104;
 

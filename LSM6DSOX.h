@@ -103,10 +103,14 @@ class LSM6DSOX{
     uint8_t i2cReadByte(uint8_t address);
 
     /**
-    * @brief Enable data along the gyroscope axes
+    * @brief Enable gyroscope
     */
     void initGyro();
 
+    /**
+    * @brief Enable accelerometer
+    */
+    void initAccelerometer();
 
 };
 #endif
