@@ -57,7 +57,7 @@ struct XLSettings{
     /**
     * @brief Linear acceleration sensitivity
     */
-    enum LA_So{
+    enum XL_SCALE{
         XL_2G=2, XL_4G=4, XL_8G=8, XL_16G=16
     };
 
@@ -83,7 +83,7 @@ struct XLSettings{
     };
 
     XL_ODR samplingRate=XL_ODR_104;
-
+    XL_SCALE scale=XL_2G;
 
 };
 

@@ -17,7 +17,8 @@ void LSM6DSOX::start(){
         gpiod_line_request_release(request);
         throw "Could not request event";
     }
-
+    //init Accelerometer and Gyroscope
+    initAccelerometer();
     //need to set drdy pin to go high for accelerometer and gyroscope
     uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
     i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
@@ -141,5 +142,11 @@ void LSM6DSOX::initAccelerometer(){
     //from datasheet: accelerometer is activated writing ODR_XL[3:0] (7th bit) to CTRL1_XL
     //                      CTRL1_XL description
     // [ODR_XL3] [ODR_XL2] [ODR_XL1] [ODR_XL0] [FS1_XL] [FS0_XL] [LPF2_XL_EN] [0]
-    i2cWriteByte(LSM6DSOX_CTRL1_XL, 0X00);
+    uint8_t bits=0x00;
+            //0x08 keeps last 4 bits (15 in binary is 00001111, hex 000f)
+    bits =(gyroSettings.samplingRate & 0x0F)<<4; //shift 4 bits back and write to ODR[3:0]
+    if (!bits){
+        throw "Accelerometer is powered down!";
+    }
+    i2cWriteByte(LSM6DSOX_CTRL1_XL, bits); //only writing sampling rate for now
 }
