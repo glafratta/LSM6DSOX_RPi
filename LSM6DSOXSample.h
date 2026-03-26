@@ -65,17 +65,17 @@ struct XLSettings{
     * @brief Linear acceleration output data rate
     */
     enum XL_ODR{
-        XL_ODR_1_6=1, //1.6 Hz
-        XL_ODR_12_5=12, //12.5
-        XL_ODR_26=26, //26 Hz
-        XL_ODR_52=52, //52 Hz
-        XL_ODR_104=104, //104 Hz
-        XL_ODR_208=208, //208 Hz
-        XL_ODR_416=416, //416 Hz
-        XL_ODR_833=833, //833 Hz
-        XL_ODR_1666=1666, //1666 Hz
-        XL_ODR_3332=3332, //3332 Hz
-        XL_ODR_6664=6664 //6664 Hz
+        XL_ODR_1_6=0, //1.6 Hz
+        XL_ODR_12_5=1, //12.5
+        XL_ODR_26=2, //26 Hz
+        XL_ODR_52=3, //52 Hz
+        XL_ODR_104=4, //104 Hz
+        XL_ODR_208=5, //208 Hz
+        XL_ODR_416=6, //416 Hz
+        XL_ODR_833=7, //833 Hz
+        XL_ODR_1666=8, //1666 Hz
+        XL_ODR_3332=9, //3332 Hz
+        XL_ODR_6664=10 //6664 Hz
     };
 
     enum XL_POWER_MODES{

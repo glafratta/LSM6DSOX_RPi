@@ -139,5 +139,7 @@ void LSM6DSOX::initGyro(){
 
 void LSM6DSOX::initAccelerometer(){
     //from datasheet: accelerometer is activated writing ODR_G[3:0] (7th bit) to CTRL1_XL
+    //                      CTRL1_XL description
+    // [ODR_XL3] [ODR_XL2] [ODR_XL1] [ODR_XL0] [FS1_XL] [FS0_XL] [LPF2_XL_EN] [0]
     i2cWriteByte(LSM6DSOX_CTRL1_XL, 0X00);
 }
