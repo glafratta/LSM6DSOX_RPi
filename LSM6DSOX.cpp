@@ -133,5 +133,11 @@ uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
 }
 
 void LSM6DSOX::initGyro(){
+    //from datasheet: gyroscope is activated writing ODR_G[3:0] (7th bit) to CTRL2_G
     i2cWriteByte(LSM6DSOX_CTRL2_G, 0X00);
+}
+
+void LSM6DSOX::initAccelerometer(){
+    //from datasheet: accelerometer is activated writing ODR_G[3:0] (7th bit) to CTRL1_XL
+    i2cWriteByte(LSM6DSOX_CTRL1_XL, 0X00);
 }

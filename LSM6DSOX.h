@@ -56,7 +56,7 @@ class LSM6DSOX{
     struct gpiod_chip *chipDRDY = nullptr;
     // struct gpiod_line* pinDRDY=nullptr;    
 
-    // struct gpiod_chip *chip=nullptr;
+    // maybe move all this into start as not all are retained
     struct gpiod_line_settings *settings=nullptr;
     struct gpiod_line_config *line_cfg=nullptr;
     struct gpiod_request_config *req_cfg=nullptr;
@@ -105,7 +105,7 @@ class LSM6DSOX{
     /**
     * @brief Enable data along the gyroscope axes
     */
-    int initGyro();
+    void initGyro();
 
 
 };
