@@ -111,12 +111,22 @@ AccelerometerData LSM6DSOX::readAccelerometer(){
     }
     catch (int fError){
         ad.x=ad.y=ad.z=999;
+        throw "Error reading accelerometer out register";
     }
     return ad;
 }
 
 void LSM6DSOX::contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes){
-
+    int fd=i2cOpen(LSM6DSOX_ADDRESS);
+    char tmp[32];
+    tmp[0]=address;
+    write(fs, tmp, 1);
+    long int r=read(fs, container, nBytes);
+    if ((r<0)|| (nBytes!=r)){
+        throw "Could not read bytes from i2c";
+    }
+    close(fd);
+    
 }
 
 int LSM6DSOX::i2cOpen(int address){
