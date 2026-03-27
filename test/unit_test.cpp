@@ -43,3 +43,14 @@ TEST_F(LSM6DSOXTest, initAccelerometer){
     initAccelerometer();
     EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL1_XL), 0x30); //[0][1][0][0][0][0][0][0] =64
 }
+
+TEST_F(LSM6DSOXTest, readAccelerometer){
+    AccelerometerData ad;
+    ad=readAccelerometer();
+    EXPECT_NE(ad.x, 0);
+    EXPECT_NE(ad.y,0);
+    EXPECT_NE(ad.z, 0);
+    EXPECT_NE(ad.x, 999);
+    EXPECT_NE(ad.y, 999);
+    EXPECT_NE(ad.z,999);
+}

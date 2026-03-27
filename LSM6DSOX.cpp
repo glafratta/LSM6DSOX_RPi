@@ -120,8 +120,8 @@ void LSM6DSOX::contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t
     int fd=i2cOpen(LSM6DSOX_ADDRESS);
     char tmp[32];
     tmp[0]=address;
-    write(fs, tmp, 1);
-    long int r=read(fs, container, nBytes);
+    write(fd, tmp, 1);
+    long int r=read(fd, container, nBytes);
     if ((r<0)|| (nBytes!=r)){
         throw "Could not read bytes from i2c";
     }
