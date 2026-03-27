@@ -114,6 +114,10 @@ class LSM6DSOX{
     */
     void initAccelerometer();
 
+    /**
+    * @brief throws a different exception based on what's in the status register
+    */
+    const char* throwStatus(uint8_t statusByte);
 
 };
 #endif

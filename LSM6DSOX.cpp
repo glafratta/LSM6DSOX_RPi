@@ -23,8 +23,9 @@ void LSM6DSOX::start(){
     uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
     i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
     //check status
-    if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
-        std::cerr<<"Status register reads"<<statusByte<<std::endl;
+    if (uint8_t statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
+        std::cout<<"Status register reads "<<unsigned(statusByte)<<std::endl;
+        return;
     }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
@@ -159,4 +160,18 @@ void LSM6DSOX::initAccelerometer(){
         throw "Writing garbage to accelerometer register!";
     }
     i2cWriteByte(LSM6DSOX_CTRL1_XL, bits); //only writing sampling rate for now
+}
+
+const char* LSM6DSOX::throwStatus(uint8_t statusByte){
+    switch (statusByte){
+        case (0x01): return "Accelerometer bit set high!"; break;
+        case (0x02): return "Gyro bit set high!"; break;
+        case (0x03): return "Accelerometer and gyro bit set high!"; break;
+        case (0x04): return "Temp bit set high!"; break;
+        case (0x05): return "Temp and accelerometer bit set high!"; break;
+        case (0x06): return "Temp, gyro and accelerometer bit set high!"; break; 
+        default:
+        return "Invalid value!";
+        break;
+    }
 }
