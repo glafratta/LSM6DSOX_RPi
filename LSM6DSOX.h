@@ -67,9 +67,11 @@ class LSM6DSOX{
     /**
     * @brief Reads from accelerometer/gyroscope/temperature sensor registers
     */
-    int getData();
+    void getData();
 
     GyroscopeData readGyro();
+
+    AccelerometerData readAccelerometer();
 
     /**
     * @brief reads bytes contiguously from the given address

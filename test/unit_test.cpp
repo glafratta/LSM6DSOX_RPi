@@ -3,7 +3,12 @@
 #include <chrono>
 const bool DEBUG=true;
 
-class LSM6DSOXTest:public LSM6DSOX, public testing::Test{};
+class LSM6DSOXTest:public LSM6DSOX, public testing::Test{
+
+    int healthCheck(){
+        
+    }
+};
 
 /**
 * @brief Checks if device is LSM6DSOX 

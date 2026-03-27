@@ -50,7 +50,7 @@ void LSM6DSOX::worker(){
                 std::cout<<"Edge event read:"<<n<<std::endl;
             }
             if (n>0){
-                getData();
+                getData(); //this reads data and releases data available bits in the status register
                 //callback goes here
                 std::cout<<"Interrupt happened!"<<std::endl;
             }
@@ -84,8 +84,8 @@ void LSM6DSOX::stop(){
 }
 
 
-int LSM6DSOX::getData(){
-    return -1;
+void LSM6DSOX::getData(){
+    readAccelerometer();
 }
 
 GyroscopeData LSM6DSOX::readGyro(){
@@ -98,6 +98,21 @@ GyroscopeData LSM6DSOX::readGyro(){
         gd.x=gd.y=gd.z=9999;
     }
     return gd;
+}
+
+AccelerometerData LSM6DSOX::readAccelerometer(){
+    AccelerometerData ad;
+    uint8_t tmp[32]; //test if data is 8 bit
+    try{
+        contiguousReadBytes(LSM6DSOX_OUTX_L_XL, tmp, 6);//read 6 bytes from outx_l_g
+        ad.x=(tmp[1]<<8) | tmp[0]; //??
+        ad.y=(tmp[3]<<8) | tmp[2]; //??
+        ad.z=(tmp[5]<<8) | tmp[4]; //??
+    }
+    catch (int fError){
+        ad.x=ad.y=ad.z=999;
+    }
+    return ad;
 }
 
 void LSM6DSOX::contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes){
