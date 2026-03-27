@@ -47,12 +47,12 @@ void LSM6DSOX::worker(){
             if (n>0){
                 getData();
                 //callback goes here
-                printf("Interrupt happened!");
+                std::cout<<"Interrupt happened!"<<std::endl;
             }
             gpiod_edge_event_buffer_free(buffer);
         }
         else if (ct>1000){
-            printf("count=%i\n", ct);
+            std::cout<<"Timeout!"<<std::endl;
             running=false; //need to delete this once you start getting data
         }
         ct++;
