@@ -22,6 +22,10 @@ void LSM6DSOX::start(){
     //need to set drdy pin to go high for accelerometer and gyroscope
     uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
     i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
+    //check status
+    if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
+        std::cerr<<"Status register reads"<<statusByte<<std::endl;
+    }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
     if (DEBUG){
@@ -33,7 +37,7 @@ void LSM6DSOX::worker(){
     running=true;
     int ct=0; //for debugging
     while (running){
-        int r=gpiod_line_request_wait_edge_events(request, -1);
+        int r=gpiod_line_request_wait_edge_events(request, wait_line); //wait indefinitely
         if (DEBUG){
             std::cout<<"Edge event code:"<<r<<std::endl;
         }

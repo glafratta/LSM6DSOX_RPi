@@ -15,7 +15,7 @@
 #define LSM6DSOX_CTRL1_XL           0X10
 #define LSM6DSOX_CTRL2_G            0X11
 
-#define LSM6DSOX_STATUS_REG         0X1E
+#define LSM6DSOX_STATUS_REG         0X1E //info about the controller and bus, whether communication was successful
 
 #define LSM6DSOX_CTRL6_C            0X15
 #define LSM6DSOX_CTRL7_G            0X16

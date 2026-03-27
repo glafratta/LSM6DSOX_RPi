@@ -114,5 +114,6 @@ class LSM6DSOX{
     */
     void initAccelerometer();
 
+
 };
 #endif
