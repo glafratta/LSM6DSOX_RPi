@@ -3,51 +3,50 @@
 #include <stdlib.h>
 
 struct GyroscopeData{
+    /**
+    * Rotation on x axis (deg/s)
+    */
     float x=0;
+    
+    /**
+    * Rotation on y axis (deg/s)
+    */
     float y=0;
+    
+    /**
+    * Rotation on z axis (deg/s)
+    */
     float z=0;
 };
 
 struct AccelerometerData{
+    /**
+    * Acceleration on x axis (m^2/s)
+    */
     float x=0;
+        /**
+    * Acceleration on y axis (m^2/s)
+    */
     float y=0;
+    /**
+    * Acceleration on z axis (m^2/s)
+    */
     float z=0;
 };
 
 
 struct LSM6DSOXSample{
     /**
-    * Acceleration on x axis (m^2/s)
+    @brief Accelerometer data 
     */
-    float ax=0;
-    /**
-    * Acceleration on y axis (m^2/s)
-    */
-    float ay=0;
-    /**
-    * Acceleration on z axis (m^2/s)
-    */
-    float az=0;
+    AccelerometerData accelerometerData;
 
     /**
-    * Rotation on x axis (m^2/s)
+    @brief Gyroscope data
     */
-
-    float gx=0;
-
+    GyroscopeData gyroscopeData;
     /**
-    * Rotation on y axis (m^2/s)
-    */
-
-    float gy=0;
-
-    /**
-    * Rotation on z axis (m^2/s)
-    */
-    float gz=0;
-
-    /**
-    * Temperature
+    * @brief Temperature data
     */
     float temperature=0;
 

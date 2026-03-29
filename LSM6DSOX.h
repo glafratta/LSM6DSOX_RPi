@@ -40,7 +40,7 @@ class LSM6DSOX{
     void worker();
 
     struct LSM6DSOXCallback{ //abstract
-        virtual void hasSample(LSM6DSOXSample sample)=0; 
+        virtual void hasSample(LSM6DSOXSample _sample)=0; 
     };
 
     protected:
@@ -49,8 +49,9 @@ class LSM6DSOX{
     std::thread thread;
     GyroSettings gyroSettings{};
     XLSettings xlSettings{};
-
+    friend class LSM6DSOXTest; //for unit testing
     uint8_t running=false;
+    LSM6DSOXSample sample;
 
     /**
     * v1 defs for reference
@@ -69,7 +70,7 @@ class LSM6DSOX{
     */
     void getData();
 
-    GyroscopeData readGyro();
+    GyroscopeData readGyroscope();
 
     AccelerometerData readAccelerometer();
 
@@ -81,14 +82,6 @@ class LSM6DSOX{
     */
     void contiguousReadBytes(uint8_t address, uint8_t * container, uint8_t nBytes);
 
-    friend class LSM6DSOXTest; //for unit testing
-
-    /**
-    * @brief Code for "gpiod_line_request_wait_edge_events" 
-    * -1: wait indefinitely
-    * 0: return immediately
-    */
-    int wait_line=-1; 
 
     /**
     * @brief Opens i2c device at a certain @param address. Throws exceptions

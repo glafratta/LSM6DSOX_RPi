@@ -25,8 +25,7 @@ void LSM6DSOX::start(){
     //check status
     if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
         std::cout<<"Status register reads "<<unsigned(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
-        readAccelerometer();
-        // return;
+        readAccelerometer(); //flushes data previously made available
     }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
@@ -86,14 +85,18 @@ void LSM6DSOX::stop(){
 
 
 void LSM6DSOX::getData(){
-    readAccelerometer();
+    sample.accelerometerData= readAccelerometer();
+    sample.gyroscopeData= readGyroscope();
 }
 
-GyroscopeData LSM6DSOX::readGyro(){
+GyroscopeData LSM6DSOX::readGyroscope(){
     GyroscopeData gd;
     uint8_t tmp[32]; //test if data is 8 bit
     try{
         contiguousReadBytes(LSM6DSOX_OUTX_L_G, tmp, 6);//read 6 bytes from outx_l_g
+        gd.x=(tmp[1]<<8) | tmp[0]; //??
+        gd.y=(tmp[3]<<8) | tmp[2]; //??
+        gd.z=(tmp[5]<<8) | tmp[4]; //??
     }
     catch (int fError){
         gd.x=gd.y=gd.z=9999;
