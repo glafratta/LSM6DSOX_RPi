@@ -25,7 +25,8 @@ void LSM6DSOX::start(){
     //check status
     if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
         std::cout<<"Status register reads "<<unsigned(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
-        return;
+        readAccelerometer();
+        // return;
     }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
@@ -38,7 +39,7 @@ void LSM6DSOX::worker(){
     running=true;
     int ct=0; //for debugging
     while (running){
-        int r=gpiod_line_request_wait_edge_events(request, wait_line); //wait indefinitely
+        int r=gpiod_line_request_wait_edge_events(request, -1); //wait indefinitely
         if (DEBUG){
             std::cout<<"Edge event code:"<<r<<std::endl;
         }
@@ -56,8 +57,8 @@ void LSM6DSOX::worker(){
             }
             gpiod_edge_event_buffer_free(buffer);
         }
-        else if (ct>1000){
-            std::cout<<"Timeout!"<<std::endl;
+        else{
+            // std::cout<<"Timeout!"<<std::endl;
             running=false; //need to delete this once you start getting data
         }
         ct++;

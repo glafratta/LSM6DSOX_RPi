@@ -44,6 +44,9 @@ TEST_F(LSM6DSOXTest, initAccelerometer){
     EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL1_XL), 0x30); //[0][1][0][0][0][0][0][0] =64
 }
 
+/**
+* @brief having an issue with not detecting rising edges in int1 pin so this reads xl data available
+*/
 TEST_F(LSM6DSOXTest, readAccelerometer){
     AccelerometerData ad;
     ad=readAccelerometer();
