@@ -26,7 +26,7 @@ void LSM6DSOX::start(){
     //check status
     if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
         std::cout<<"Status register reads "<<unsigned(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
-       flushData(); //flushes data previously made available
+       flushData(statusByte); //flushes data previously made available
     }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
