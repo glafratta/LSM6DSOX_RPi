@@ -222,3 +222,7 @@ void LSM6DSOX::flushData(uint8_t statusByte){
         readAccelerometer();
     }
 }
+
+void LSM6DSOXCallback::registerCallback(LSM6DSOXCallback * _cb){
+    callback=_cb;
+}

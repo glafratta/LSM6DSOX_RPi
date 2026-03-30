@@ -5,9 +5,7 @@
 #include <gpiod.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
-//#include <i2c/smbus.h> //system management bus
 #include <fcntl.h>
-// #include "lsm6dsox_reg.h"
 #include "LSM6DSOXSample.h"
 #include "LSM6DSOX_Registers.h"
 #include <string>
@@ -34,14 +32,15 @@ class LSM6DSOX{
     */
     void stop();
 
-    /**
-    * @brief Busy loop, waits for interrupt on data ready pin
-    */
-    void worker();
-
     struct LSM6DSOXCallback{ //abstract
-        virtual void hasSample(LSM6DSOXSample _sample)=0; 
+        public:
+        virtual void hasSample(const LSM6DSOXSample &_sample)=0; 
     };
+
+    /**
+    * @brief Assigns custom implementation of virtual callback
+    */
+    void registerCallback(LSM6DSOXCallback * _cb);
 
     protected:
     std::string device; //device file
@@ -52,18 +51,18 @@ class LSM6DSOX{
     friend class LSM6DSOXTest; //for unit testing
     uint8_t running=false;
     LSM6DSOXSample sample;
+    LSM6DSOXCallback * callback=nullptr;
 
-    /**
-    * v1 defs for reference
-    */
-    struct gpiod_chip *chipDRDY = nullptr;
-    // struct gpiod_line* pinDRDY=nullptr;    
-
-    // maybe move all this into start as not all are retained
+    struct gpiod_chip *chipDRDY = nullptr; //chip where the data ready pin is
     struct gpiod_line_settings *settings=nullptr;
     struct gpiod_line_config *line_cfg=nullptr;
     struct gpiod_request_config *req_cfg=nullptr;
     struct gpiod_line_request *request=nullptr;
+
+    /**
+    * @brief Busy loop, waits for interrupt on data ready pin
+    */
+    void worker();
 
     /**
     * @brief Reads from accelerometer/gyroscope/temperature sensor registers
@@ -119,5 +118,7 @@ class LSM6DSOX{
     * and allowing interrupt pin to go low for the next reading
     */
     void flushData(uint8_t statusByte);
+
+
 };
 #endif
