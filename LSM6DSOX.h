@@ -51,6 +51,8 @@ class LSM6DSOX{
     uint8_t running=false;
     LSM6DSOXSample sample;
     LSM6DSOXCallback * callback=nullptr;
+    float xlRes; //accelerometer resolution
+    float gRes; //gyroscope resolution
 
     struct gpiod_chip *chipDRDY = nullptr; //chip where the data ready pin is
     struct gpiod_line_settings *settings=nullptr;
@@ -116,7 +118,17 @@ class LSM6DSOX{
     * @brief Bit of a hack, but uses status register readings to flush any existing data
     * and allowing interrupt pin to go low for the next reading
     */
-    void flushData(uint8_t statusByte);
+    uint8_t flushData(uint8_t statusByte);
+
+    /**
+    *@brief Gyroscope resolution (16 bit)
+    */
+    float getGRes();
+
+    /**
+    * @brief Accelerometer resolution (16 bit)
+    */
+    float getXlRes();
 
 
 };

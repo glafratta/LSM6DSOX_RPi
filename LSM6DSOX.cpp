@@ -23,12 +23,9 @@ void LSM6DSOX::start(){
     //need to set drdy pin to go high for accelerometer and gyroscope
     uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
     i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
-    //check status
-    if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
-        std::cout<<"Status register reads "<<int(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
-        flushData(statusByte); //flushes data previously made available
-        //readAccelerometer();
-    }
+    //automatically flushes all data
+    readGyroscope();
+    readAccelerometer();
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
     if (DEBUG){
@@ -87,12 +84,19 @@ void LSM6DSOX::stop(){
 
 
 void LSM6DSOX::getData(){
-    sample.accelerometerData= readAccelerometer();
-    sample.gyroscopeData= readGyroscope();
+    RawData ad= readAccelerometer();
+    RawData gd= readGyroscope();
+    sample.ax=ad.x*xlRes;
+    sample.ay=ad.y*xlRes;
+    sample.az=ad.z*xlRes;
+    sample.gx=gd.x*gRes;
+    sample.gy=gd.y*gRes;
+    sample.gz=gd.z*gRes;
+    callback->hasSample(sample);
 }
 
-GyroscopeData LSM6DSOX::readGyroscope(){
-    GyroscopeData gd;
+RawData LSM6DSOX::readGyroscope(){
+    RawData gd;
     uint8_t tmp[32]; //test if data is 8 bit
     try{
         contiguousReadBytes(LSM6DSOX_OUTX_L_G, tmp, 6);//read 6 bytes from outx_l_g
@@ -106,8 +110,8 @@ GyroscopeData LSM6DSOX::readGyroscope(){
     return gd;
 }
 
-AccelerometerData LSM6DSOX::readAccelerometer(){
-    AccelerometerData ad;
+RawData LSM6DSOX::readAccelerometer(){
+    RawData ad;
     uint8_t tmp[32]; //test if data is 8 bit
     try{
         contiguousReadBytes(LSM6DSOX_OUTX_L_XL, tmp, 6);//read 6 bytes from outx_l_g
@@ -182,7 +186,11 @@ void LSM6DSOX::initGyro(){
     if (!bits){
         throw "Gyroscope powered down!";
     }
+    if (bits==(0xF0)){
+        throw "Writing garbage to gyroscope register!";
+    }
     i2cWriteByte(LSM6DSOX_CTRL2_G, bits);
+    gRes=getGRes();
 }
 
 void LSM6DSOX::initAccelerometer(){
@@ -199,6 +207,7 @@ void LSM6DSOX::initAccelerometer(){
         throw "Writing garbage to accelerometer register!";
     }
     i2cWriteByte(LSM6DSOX_CTRL1_XL, bits); //only writing sampling rate for now
+    xlRes=getXlRes();
 }
 
 const char* LSM6DSOX::throwStatus(uint8_t statusByte){
@@ -215,15 +224,33 @@ const char* LSM6DSOX::throwStatus(uint8_t statusByte){
     }
 }
 
-void LSM6DSOX::flushData(uint8_t statusByte){
+uint8_t LSM6DSOX::flushData(uint8_t statusByte){
+    uint8_t result=0x00;
     if (unsigned(statusByte)>1){
         readGyroscope(); //throws away old gyro data
+        result|=0x02;
+        if (DEBUG){
+            std::cout<<"Flushed gyroscope"<<std::endl;
+        }
     }
     if (unsigned(statusByte)%2!=0){
         readAccelerometer();
+        result|=0x01;
+        if (DEBUG){
+            std::cout<<"Flushed accelerometer"<<std::endl;
+        }
     }
+    return result;
 }
 
 void LSM6DSOX::registerCallback(LSM6DSOXCallback * _cb){
     callback=_cb;
+}
+
+float LSM6DSOX::getGRes(){
+    return (float)gyroSettings.scale / 32768.0;//16 bit float
+}
+
+float LSM6DSOX::getXlRes(){
+    return (float)xlSettings.scale / 32768.0;//16 bit float
 }

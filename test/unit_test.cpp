@@ -3,7 +3,7 @@
 #include <chrono>
 const bool DEBUG=true;
 
-class LSM6DSOXTest:public LSM6DSOX, public testing::Test{
+class LSM6DSOXTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<uint8_t>{
 
     int healthCheck(){
         
@@ -56,7 +56,7 @@ TEST_F(LSM6DSOXTest, initGyro){
 * @brief having an issue with not detecting rising edges in int1 pin so this reads xl data available
 */
 TEST_F(LSM6DSOXTest, readAccelerometer){
-    AccelerometerData ad;
+    RawData ad;
     ad=readAccelerometer();
     EXPECT_NE(ad.x, 0);
     EXPECT_NE(ad.y,0);
@@ -71,7 +71,7 @@ TEST_F(LSM6DSOXTest, readAccelerometer){
 * @brief having an issue with not detecting rising edges in int1 pin so this reads xl data available
 */
 TEST_F(LSM6DSOXTest, readGyroscope){
-    GyroscopeData gd;
+    RawData gd;
     gd=readGyroscope();
     EXPECT_NE(gd.x, 0);
     EXPECT_NE(gd.y,0);
@@ -81,3 +81,9 @@ TEST_F(LSM6DSOXTest, readGyroscope){
     EXPECT_NE(gd.z,999);
     EXPECT_NE(i2cReadByte(LSM6DSOX_STATUS_REG), 0X02);
 }
+
+TEST_P(LSM6DSOXTest, flushData){
+    EXPECT_EQ(flushData(GetParam()), GetParam());
+}
+
+INSTANTIATE_TEST_CASE_P(Codes, LSM6DSOXTest, ::testing::Values(uint8_t(0), uint8_t(1), uint8_t(2), uint8_t(3)));
