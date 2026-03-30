@@ -90,7 +90,7 @@ struct GyroSettings{
     /**
     *@brief Angular rate sensitivity
     */
-    enum G_So{
+    enum GYRO_SCALE{
         GYRO_125_DPS=125, GYRO_250_DPS=250, GYRO_500_DPS=500, GYRO_1000_DPS=1000, GYRO_2000_DPS=2000 
     };
 
@@ -98,20 +98,20 @@ struct GyroSettings{
     * @brief Angular rate output data rate
     */
     enum GYRO_ODR{ //remember to set this :uint8_t
-        GYRO_ODR_12_5=12, //12.5
-        GYRO_ODR_26=26, //26 Hz
-        GYRO_ODR_52=52, //52 Hz
-        GYRO_ODR_104=104, //104 Hz
-        GYRO_ODR_208=208, //208 Hz
-        GYRO_ODR_416=416, //416 Hz
-        GYRO_ODR_833=833, //833 Hz
-        GYRO_ODR_1666=1666, //1666 Hz
-        GYRO_ODR_3332=3332, //3332 Hz
-        GYRO_ODR_6664=6664 //6664 Hz
+        GYRO_ODR_12_5=0x01, //12.5
+        GYRO_ODR_26=0x02, //26 Hz
+        GYRO_ODR_52=0x03, //52 Hz
+        GYRO_ODR_104=0x04, //104 Hz
+        GYRO_ODR_208=0x05, //208 Hz
+        GYRO_ODR_416=0x06, //416 Hz
+        GYRO_ODR_833=0x07, //833 Hz
+        GYRO_ODR_1666=0x8, //1666 Hz
+        GYRO_ODR_3332=0x09, //3332 Hz
+        GYRO_ODR_6664=0x0A //6664 Hz
     };
 
-    GYRO_ODR samplingRate=GYRO_ODR_104;
-
+    GYRO_ODR samplingRate=GYRO_ODR_52;
+    GYRO_SCALE scale=GYRO_125_DPS;
 };
 
 

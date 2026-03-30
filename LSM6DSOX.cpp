@@ -19,13 +19,14 @@ void LSM6DSOX::start(){
     }
     //init Accelerometer and Gyroscope
     initAccelerometer();
+    initGyro();
     //need to set drdy pin to go high for accelerometer and gyroscope
     uint8_t data =LSM6DSOX_GYRO_NC | LSM6DSOX_XL_NC; 
     i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
     //check status
     if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
         std::cout<<"Status register reads "<<unsigned(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
-        readAccelerometer(); //flushes data previously made available
+       flushData(); //flushes data previously made available
     }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
@@ -172,7 +173,15 @@ uint8_t LSM6DSOX::i2cReadByte(uint8_t address){
 
 void LSM6DSOX::initGyro(){
     //from datasheet: gyroscope is activated writing ODR_G[3:0] (7th bit) to CTRL2_G
-    i2cWriteByte(LSM6DSOX_CTRL2_G, 0X00);
+    //                      CTRL2_G description
+    // [ODR_G3] [ODR_G2] [ODR_G1] [ODR_G0] [FS1_G] [FS0_G] [LPF2_G_EN] [0]
+
+    uint8_t bits=0x00;
+    bits=(gyroSettings.samplingRate&0x0F)<<4;
+    if (!bits){
+        throw "Gyroscope powered down!";
+    }
+    i2cWriteByte(LSM6DSOX_CTRL2_G, bits);
 }
 
 void LSM6DSOX::initAccelerometer(){
@@ -202,5 +211,14 @@ const char* LSM6DSOX::throwStatus(uint8_t statusByte){
         default:
         return "Invalid value!";
         break;
+    }
+}
+
+void LSM6DSOX::flushData(uint8_t statusByte){
+    if (unsigned(statusByte)>1){
+        readGyroscope(); //throws away old gyro data
+    }
+    if (unsigned(statusByte)%2!=0){
+        readAccelerometer();
     }
 }

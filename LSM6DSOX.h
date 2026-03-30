@@ -114,5 +114,10 @@ class LSM6DSOX{
     */
     const char* throwStatus(uint8_t statusByte);
 
+    /**
+    * @brief Bit of a hack, but uses status register readings to flush any existing data
+    * and allowing interrupt pin to go low for the next reading
+    */
+    void flushData(uint8_t statusByte);
 };
 #endif
