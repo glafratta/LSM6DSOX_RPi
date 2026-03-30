@@ -45,6 +45,14 @@ TEST_F(LSM6DSOXTest, initAccelerometer){
 }
 
 /**
+* @brief Test that the correct bits have been written to gyroscope register 
+*/
+TEST_F(LSM6DSOXTest, initGyro){
+    initGyro();
+    EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL2_G), 0x30); //[0][1][0][0][0][0][0][0] =64
+}
+
+/**
 * @brief having an issue with not detecting rising edges in int1 pin so this reads xl data available
 */
 TEST_F(LSM6DSOXTest, readAccelerometer){
@@ -57,4 +65,19 @@ TEST_F(LSM6DSOXTest, readAccelerometer){
     EXPECT_NE(ad.y, 999);
     EXPECT_NE(ad.z,999);
     EXPECT_NE(i2cReadByte(LSM6DSOX_STATUS_REG), 0X01);
+}
+
+/**
+* @brief having an issue with not detecting rising edges in int1 pin so this reads xl data available
+*/
+TEST_F(LSM6DSOXTest, readGyroscope){
+    GyroscopeData gd;
+    gd=readGyroscope();
+    EXPECT_NE(gd.x, 0);
+    EXPECT_NE(gd.y,0);
+    EXPECT_NE(gd.z, 0);
+    EXPECT_NE(gd.x, 999);
+    EXPECT_NE(gd.y, 999);
+    EXPECT_NE(gd.z,999);
+    EXPECT_NE(i2cReadByte(LSM6DSOX_STATUS_REG), 0X02);
 }

@@ -88,7 +88,7 @@ void LSM6DSOX::stop(){
 
 void LSM6DSOX::getData(){
     sample.accelerometerData= readAccelerometer();
-   // sample.gyroscopeData= readGyroscope();
+    sample.gyroscopeData= readGyroscope();
 }
 
 GyroscopeData LSM6DSOX::readGyroscope(){
