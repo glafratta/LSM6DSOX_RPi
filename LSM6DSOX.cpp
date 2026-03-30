@@ -25,8 +25,9 @@ void LSM6DSOX::start(){
     i2cWriteByte(LSM6DSOX_INT1_CTRL,data);
     //check status
     if (auto statusByte=i2cReadByte(LSM6DSOX_STATUS_REG)!=0x00){ //Status [0][0][0][0][0][Temp_avail][Gyro_avail][Accel_avail]
-        std::cout<<"Status register reads "<<unsigned(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
-       flushData(statusByte); //flushes data previously made available
+        std::cout<<"Status register reads "<<int(statusByte)<<", "<<throwStatus(statusByte)<<std::endl;
+        flushData(statusByte); //flushes data previously made available
+        //readAccelerometer();
     }
     //start thread with busy loop
     thread=std::thread(&LSM6DSOX::worker, this);
@@ -87,7 +88,7 @@ void LSM6DSOX::stop(){
 
 void LSM6DSOX::getData(){
     sample.accelerometerData= readAccelerometer();
-    sample.gyroscopeData= readGyroscope();
+   // sample.gyroscopeData= readGyroscope();
 }
 
 GyroscopeData LSM6DSOX::readGyroscope(){
@@ -223,6 +224,6 @@ void LSM6DSOX::flushData(uint8_t statusByte){
     }
 }
 
-void LSM6DSOXCallback::registerCallback(LSM6DSOXCallback * _cb){
+void LSM6DSOX::registerCallback(LSM6DSOXCallback * _cb){
     callback=_cb;
 }

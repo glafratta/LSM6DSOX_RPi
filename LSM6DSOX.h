@@ -16,12 +16,16 @@ const unsigned int LMS6DSOX_DRDY_GPIO=17; // RPi physical pin 15, connected to d
 const char * DRDY_CHIP="/dev/gpiochip0";
 extern const bool DEBUG;
 class LSM6DSOX{
-
     public:     
     LSM6DSOX(const std::string& _device="/dev/i2c-1", uint8_t _address=LSM6DSOX_ADDRESS):device(_device), address(_address){}
 
     ~LSM6DSOX(){}
 
+    struct LSM6DSOXCallback{ //abstract
+        public:
+        virtual void hasSample(const LSM6DSOXSample &_sample)=0; 
+    };
+    
     /**
     * @brief Opens gpio chip, sets gpio settings, line config, request config and requests, starts thread running the busy loop
     */
@@ -31,11 +35,6 @@ class LSM6DSOX{
     @brief Terminates thread, releases lines
     */
     void stop();
-
-    struct LSM6DSOXCallback{ //abstract
-        public:
-        virtual void hasSample(const LSM6DSOXSample &_sample)=0; 
-    };
 
     /**
     * @brief Assigns custom implementation of virtual callback

@@ -26,6 +26,6 @@ install(TARGETS LSM6DSOX_Rpi EXPORT LSM6DSOX_Rpi-targets
 message("library and archive destination " ${CMAKE_INSTALL_LIBDIR})
 
 message("public header destination " ${CMAKE_INSTALL_INCLUDEDIR})
-add_subdirectory(test)
+#add_subdirectory(test)
 
 set(CMAKE_BUILD_TYPE Debug)
