@@ -70,9 +70,9 @@ class LSM6DSOX{
     */
     void getData();
 
-    GyroscopeData readGyroscope();
+    RawData readGyroscope();
 
-    AccelerometerData readAccelerometer();
+    RawData readAccelerometer();
 
     /**
     * @brief reads bytes contiguously from the given address
