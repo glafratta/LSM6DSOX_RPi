@@ -3,7 +3,7 @@ C++ implementation of real-time reading from a LSM6DSOX IMU.
 
 ## Requirements
 
-Raspberry Pi with Debian Trixie OS, gpiod library version 2
+Raspberry Pi 5 with Debian Trixie OS, gpiod library version 2
 
 `sudo apt-get install libgpiod cmake libgtest-dev`
 
@@ -19,8 +19,19 @@ Raspberry Pi with Debian Trixie OS, gpiod library version 2
 
 `make`
 
+`sudo make install` : install library
+
+optional, compile tests and demo: 
+
+`cd test
+
+cmake .
+
+make`
+
 ## Run
 `ctest` : run unit tests
+
 `./test/main` : runs simple example program printing values on screen
 
 <!-- ### Find device address
