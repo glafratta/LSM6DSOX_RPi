@@ -246,6 +246,22 @@ void LSM6DSOX::registerCallback(LSM6DSOXCallback * _cb){
     callback=_cb;
 }
 
+void LSM6DSOX::setXLScale(XLSettings::XL_SCALE _scale){
+    xlSettings.scale=_scale;
+}
+
+void LSM6DSOX::setGyroScale(GyroSettings::GYRO_SCALE _scale){
+    gyroSettings.scale=_scale;
+}
+
+void LSM6DSOX::setXLSamplingRate(XLSettings::XL_ODR sr){
+    xlSettings.samplingRate=sr;
+}
+
+void LSM6DSOX::setGyroSamplingRate(GyroSettings::GYRO_ODR sr){
+    gyroSettings.samplingRate=sr;
+}
+
 float LSM6DSOX::getGRes(){
     return (float)gyroSettings.scale / 32768.0;//16 bit float
 }

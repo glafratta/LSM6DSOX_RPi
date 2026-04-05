@@ -15,6 +15,7 @@
 const unsigned int LMS6DSOX_DRDY_GPIO=17; // RPi physical pin 15, connected to data ready pin on LSM
 const char * DRDY_CHIP="/dev/gpiochip0";
 extern const bool DEBUG;
+
 class LSM6DSOX{
     public:     
     LSM6DSOX(const std::string& _device="/dev/i2c-1", uint8_t _address=LSM6DSOX_ADDRESS):device(_device), address(_address){}
@@ -40,6 +41,14 @@ class LSM6DSOX{
     * @brief Assigns custom implementation of virtual callback
     */
     void registerCallback(LSM6DSOXCallback * _cb);
+
+    void setXLScale(XLSettings::XL_SCALE);
+
+    void setGyroScale(GyroSettings::GYRO_SCALE);
+
+    void setXLSamplingRate(XLSettings::XL_ODR);
+
+    void setGyroSamplingRate(GyroSettings::GYRO_ODR);
 
     protected:
     std::string device; //device file
@@ -141,5 +150,6 @@ class LSM6DSOX{
     * so they can directly be written to register
     */
     uint8_t xlScaleBits();
+
 };
 #endif
