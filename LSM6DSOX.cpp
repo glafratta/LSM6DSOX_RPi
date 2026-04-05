@@ -285,14 +285,14 @@ uint8_t LSM6DSOX::xlScaleBits(){
         std::cout<<"FS XL low!"<<std::endl;
     }
     switch (xlSettings.scale){
-        case XL_2G: 
+        case  XLSettings::XL_2G: 
         if (fs){
             xl_bits=0x01;
         }
         break;
-        case XL_4G: xl_bits=0x02;break;
-        case XL_8G: xl_bits=0x03;break;
-        case XL_16G: xl_bits=0x01;
+        case XLSettings::XL_4G: xl_bits=0x02;break;
+        case XLSettings::XL_8G: xl_bits=0x03;break;
+        case XLSettings::XL_16G: xl_bits=0x01;
         if (fs){
             std::cout <<"Warning: Setting scale to 2g because FS bit is high"<<std::endl;
         }
