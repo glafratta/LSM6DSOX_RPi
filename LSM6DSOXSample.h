@@ -84,7 +84,11 @@ struct GyroSettings{
     *@brief Angular rate sensitivity
     */
     enum GYRO_SCALE{
-        GYRO_125_DPS=125, GYRO_250_DPS=250, GYRO_500_DPS=500, GYRO_1000_DPS=1000, GYRO_2000_DPS=2000 
+        GYRO_125_DPS=125, 
+        GYRO_250_DPS=250, 
+        GYRO_500_DPS=500, 
+        GYRO_1000_DPS=1000, 
+        GYRO_2000_DPS=2000 
     };
 
         /**
