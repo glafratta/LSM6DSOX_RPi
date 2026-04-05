@@ -257,15 +257,15 @@ float LSM6DSOX::getXlRes(){
 }
 
 uint8_t LSM6DSOX::gyroScaleBits(){
-    if (gyroSettings.scale==GYRO_125_DPS){
+    if (gyroSettings.scale==GyroSettings::GYRO_125_DPS){
         return 0x01; //set FS_125 bit high, otherwise will use settings below
     }
     uint8_t gyro_bits=0x00;
     switch (gyroSettings.scale){//assumes FS_125 bit in CTRL2_G low
-        case GYRO_250_DPS: gyro_bits=0x00;break;
-        case GYRO_500_DPS: gyro_bits=0x01;break;
-        case GYRO_1000_DPS: gyro_bits=0x02;break;
-        case GYRO_2000_DPS: gyro_bits=0x03;break;
+        case GyroSettings::GYRO_250_DPS: gyro_bits=0x00;break;
+        case GyroSettings::GYRO_500_DPS: gyro_bits=0x01;break;
+        case GyroSettings::GYRO_1000_DPS: gyro_bits=0x02;break;
+        case GyroSettings::GYRO_2000_DPS: gyro_bits=0x03;break;
         default: throw "Invalid scale settings";break;
     }
     return (gyro_bits<<1); //shifted by one

@@ -131,9 +131,13 @@ class LSM6DSOX{
     float getXlRes();
 
     /**
-    * @brief Get bits to write to gyro register to set scale
+    * @brief Get bits to write to gyro register CTRL2_G to set scale
     */
     uint8_t gyroScaleBits(); 
 
+    /**
+    * @brief Get bits to write to accelerometer register CTRL1_XL to set scale
+    */
+    uint8_t xlScaleBits();
 };
 #endif
