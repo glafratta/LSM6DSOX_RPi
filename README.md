@@ -20,7 +20,8 @@ Raspberry Pi with Debian Trixie OS, gpiod library version 2
 `make`
 
 ## Run
-No examples yet!
+`ctest` : run unit tests
+`./test/main` : runs simple example program printing values on screen
 
 <!-- ### Find device address
 `sudo apt install i2c-tools`

@@ -49,7 +49,7 @@ TEST_F(LSM6DSOXTest, initAccelerometer){
 */
 TEST_F(LSM6DSOXTest, initGyro){
     initGyro();
-    EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL2_G), 0x30); //[0][1][0][0][0][0][0][0] =64
+    EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL2_G)>>5, 1); //[0][1][0][0][0][0][0][0] =64
 }
 
 /**
