@@ -88,8 +88,8 @@ class LSM6DSOXXLScaleTest:public LSM6DSOX, public testing::Test, public testing:
 
 TEST_P(LSM6DSOXXLScaleTest, xlScaleBits){
     uint8_t fs=std::get<0>(GetParam());
-    i2cWriteByte(LSM6DSOX_CTRL8_XL, fs); //set fs
-    EXPECT_EQ(isxlFSHigh(), fs); //sanity check
+    i2cWriteByte(LSM6DSOX_CTRL8_XL, fs<<1); //set fs
+    EXPECT_EQ(isxlFSHigh(), bool(fs)); //sanity check
     setXLScale(std::get<1>(GetParam()));
     EXPECT_EQ((xlScaleBits()>>2), std::get<2>(GetParam()));
 
