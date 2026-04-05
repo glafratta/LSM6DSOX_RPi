@@ -83,7 +83,7 @@ TEST_P(LSM6DSOXTest, flushData){
 
 INSTANTIATE_TEST_CASE_P(Codes, LSM6DSOXTest, ::testing::Values(uint8_t(0), uint8_t(1), uint8_t(2), uint8_t(3)));
                                                                                                                //fs     //scale  //expected
-class LSM6DSOXXLScaleTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<std::tuple<uint8_t, uint8_t, uint8_t>>{};
+class LSM6DSOXXLScaleTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>>{};
 
 
 TEST_P(LSM6DSOXXLScaleTest, xlScaleBits){
@@ -96,13 +96,13 @@ TEST_P(LSM6DSOXXLScaleTest, xlScaleBits){
 }
 
 INSTANTIATE_TEST_CASE_P(XLScales, LSM6DSOXXLScaleTest, ::testing::Values(
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_2G, 0x00),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_2G, 0x01),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_4G, 0x02),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_4G, 0x02),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_8G, 0x03),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_8G, 0x03),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_16G, 0x01),
-                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_2G, 0x01)
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x00, XLSettings::XL_2G, 0x00),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x01, XLSettings::XL_2G, 0x01),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x00, XLSettings::XL_4G, 0x02),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x01, XLSettings::XL_4G, 0x02),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x00, XLSettings::XL_8G, 0x03),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x01, XLSettings::XL_8G, 0x03),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x00, XLSettings::XL_16G, 0x01),
+                        std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x01, XLSettings::XL_16G, 0x01)
                     )
 );
