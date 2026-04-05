@@ -189,6 +189,7 @@ void LSM6DSOX::initGyro(){
     if (bits==(0xF0)){
         throw "Writing garbage to gyroscope register!";
     }
+    bits |=gyroScaleBits();
     i2cWriteByte(LSM6DSOX_CTRL2_G, bits);
     gRes=getGRes();
 }

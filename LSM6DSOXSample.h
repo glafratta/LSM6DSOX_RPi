@@ -47,7 +47,10 @@ struct XLSettings{
     * @brief Linear acceleration sensitivity
     */
     enum XL_SCALE{
-        XL_2G=2, XL_4G=4, XL_8G=8, XL_16G=16
+        XL_2G=2, 
+        XL_4G=4, 
+        XL_8G=8, 
+        XL_16G=16
     };
 
     /**
