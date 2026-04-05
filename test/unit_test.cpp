@@ -125,9 +125,10 @@ TEST_P(LSM6DSOXGyroScaleTest, gyroScaleBits){
     uint8_t ctrl2_g=i2cReadByte(LSM6DSOX_CTRL2_G);
     if (std::get<0>(GetParam())>GyroSettings::GYRO_125_DPS){
         uint8_t masked=(ctrl2_g&0x04)>>1;//get bit 1 and 2 and shift by 1
+        EXPECT_EQ(ctrl2_g&0x01, 0x00);//expect fs_125 bit to set low
     }
     else{
-        uint8_t masked=(ctrl2_g&0x01);//get bit 1 and 2 and shift by 2
+        uint8_t masked=(ctrl2_g&0x01);//only check fs 125 bit
     }
     EXPECT_EQ(masked, std::get<1>(GetParam()));
 
