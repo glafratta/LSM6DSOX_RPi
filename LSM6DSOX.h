@@ -111,12 +111,12 @@ class LSM6DSOX{
     uint8_t i2cReadByte(uint8_t address);
 
     /**
-    * @brief Enable gyroscope
+    * @brief Enable gyroscope, set sampling rate and data scale from gyroSettings
     */
     void initGyro();
 
     /**
-    * @brief Enable accelerometer
+    * @brief Enable accelerometer, set sampling rate and data scale from xlSettings
     */
     void initAccelerometer();
 

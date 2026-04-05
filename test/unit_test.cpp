@@ -82,7 +82,9 @@ TEST_P(LSM6DSOXTest, flushData){
 }
 
 INSTANTIATE_TEST_CASE_P(Codes, LSM6DSOXTest, ::testing::Values(uint8_t(0), uint8_t(1), uint8_t(2), uint8_t(3)));
-                                                                                                               //fs     //scale  //expected
+                                   
+//TESTING XL SCALE
+                                                                                                                //fs     //scale  //expected
 class LSM6DSOXXLScaleTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>>{};
 
 
@@ -91,7 +93,10 @@ TEST_P(LSM6DSOXXLScaleTest, xlScaleBits){
     i2cWriteByte(LSM6DSOX_CTRL8_XL, fs<<1); //set fs
     EXPECT_EQ(isxlFSHigh(), bool(fs)); //sanity check
     setXLScale(std::get<1>(GetParam()));
-    EXPECT_EQ((xlScaleBits()>>2), std::get<2>(GetParam()));
+    initAccelerometer();
+    uint8_t ctrl1_xl=i2cReadByte(LSM6DSOX_CTRL1_XL);
+    uint8_t masked=(ctrl1_xl&0x04)>>2;//get bit 1 and 2 and shift by 2
+    EXPECT_EQ(masked, std::get<2>(GetParam()));
 
 }
 
@@ -106,3 +111,35 @@ INSTANTIATE_TEST_CASE_P(XLScales, LSM6DSOXXLScaleTest, ::testing::Values(
                         std::tuple<uint8_t, XLSettings::XL_SCALE, uint8_t>(0x01, XLSettings::XL_16G, 0x01)
                     )
 );
+
+// TESTING GYRO SCALE
+
+
+                                                                                                                                      //scale  //expected
+class LSM6DSOXGyroScaleTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<std::tuple<GyroSettings::GYRO_SCALE, uint8_t>>{};
+
+
+TEST_P(LSM6DSOXGyroScaleTest, gyroScaleBits){
+    setGyroScale(std::get<0>(GetParam()));
+    initGyro();
+    uint8_t ctrl2_g=i2cReadByte(LSM6DSOX_CTRL2_G);
+    if (std::get<0>(GetParam())>GyroSettings::GYRO_125_DPS){
+        uint8_t masked=(ctrl2_g&0x04)>>1;//get bit 1 and 2 and shift by 1
+    }
+    else{
+        uint8_t masked=(ctrl2_g&0x01);//get bit 1 and 2 and shift by 2
+    }
+    EXPECT_EQ(masked, std::get<1>(GetParam()));
+
+
+}
+
+INSTANTIATE_TEST_CASE_P(GyroScales, LSM6DSOXGyroScaleTest, ::testing::Values(
+                        std::tuple<GyroSettings::GYRO_SCALE, uint8_t>( GyroSettings::GYRO_125_DPS, 0x01),
+                        std::tuple<GyroSettings::GYRO_SCALE, uint8_t>( GyroSettings::GYRO_250_DPS, 0x00),
+                        std::tuple<GyroSettings::GYRO_SCALE, uint8_t>( GyroSettings::GYRO_500_DPS, 0x01),
+                        std::tuple<GyroSettings::GYRO_SCALE, uint8_t>( GyroSettings::GYRO_1000_DPS, 0x02),
+                        std::tuple<GyroSettings::GYRO_SCALE, uint8_t>( GyroSettings::GYRO_2000_DPS, 0x03)
+                    )
+);
+
