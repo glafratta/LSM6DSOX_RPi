@@ -270,3 +270,8 @@ uint8_t LSM6DSOX::gyroScaleBits(){
     }
     return (gyro_bits<<1); //shifted by one
 }
+
+uint8_t LSM6DSOX::xlScaleBits(){
+    //read FS_MODE bit in CTRL8_XL 
+    uint8_t ctrl8_xl=i2cReadByte(CTRL8_XL);
+}
