@@ -207,6 +207,7 @@ void LSM6DSOX::initAccelerometer(){
     if (bits==(0xF0)){
         throw "Writing garbage to accelerometer register!";
     }
+    bits|=xlScaleBits();
     i2cWriteByte(LSM6DSOX_CTRL1_XL, bits); //only writing sampling rate for now
     xlRes=getXlRes();
 }
