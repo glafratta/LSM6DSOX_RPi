@@ -285,18 +285,27 @@ uint8_t LSM6DSOX::gyroScaleBits(){
     return (gyro_bits<<1); //shifted by one
 }
 
-uint8_t LSM6DSOX::xlScaleBits(){
-    //read FS_MODE bit in CTRL8_XL 
-    uint8_t fs=0x00;
+bool LSM6DSOX::isxlFSHigh(){
+    bool fs=0x00;
     uint8_t ctrl8_xl=i2cReadByte(LSM6DSOX_CTRL8_XL);
-    uint8_t xl_bits=0x00;
     if (ctrl8_xl & (1<<1)){ //mask to see if 1st bit is 1
-        std::cout<<"FS XL high!"<<std::endl;
+        if (DEBUG){
+            std::cout<<"FS XL high!"<<std::endl;
+        }
         fs=(ctrl8_xl>>1)&1; //get bit as 1 or zero
     }
-    else{
+    else if (DEBUG){
         std::cout<<"FS XL low!"<<std::endl;
     }
+    return fs;
+
+
+}
+
+uint8_t LSM6DSOX::xlScaleBits(){
+    //read FS_MODE bit in CTRL8_XL 
+    bool fs=isxlFSHigh();
+    uint8_t xl_bits=0x00;
     switch (xlSettings.scale){
         case  XLSettings::XL_2G: 
         if (fs){

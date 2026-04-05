@@ -50,6 +50,8 @@ class LSM6DSOX{
 
     void setGyroSamplingRate(GyroSettings::GYRO_ODR);
 
+    bool isxlFSHigh();
+
     protected:
     std::string device; //device file
     uint8_t address=0;// chip address

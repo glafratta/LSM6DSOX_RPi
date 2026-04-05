@@ -3,12 +3,7 @@
 #include <chrono>
 const bool DEBUG=true;
 
-class LSM6DSOXTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<uint8_t>{
-
-    int healthCheck(){
-        
-    }
-};
+class LSM6DSOXTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<uint8_t>{};
 
 /**
 * @brief Checks if device is LSM6DSOX 
@@ -87,3 +82,27 @@ TEST_P(LSM6DSOXTest, flushData){
 }
 
 INSTANTIATE_TEST_CASE_P(Codes, LSM6DSOXTest, ::testing::Values(uint8_t(0), uint8_t(1), uint8_t(2), uint8_t(3)));
+                                                                                                               //fs     //scale  //expected
+class LSM6DSOXXLScaleTest:public LSM6DSOX, public testing::Test, public testing::WithParamInterface<std::tuple<uint8_t, uint8_t, uint8_t>>{};
+
+
+TEST_P(LSM6DSOXXLScaleTest, xlScaleBits){
+    uint8_t fs=std::get<0>(GetParam());
+    i2cWriteByte(LSM6DSOX_CTRL8_XL, fs); //set fs
+    EXPECT_EQ(isxlFSHigh(), fs); //sanity check
+    setXLScale(std::get<1>(GetParam()));
+    EXPECT_EQ((xlScaleBits()>>2), std::get<2>(GetParam()));
+
+}
+
+INSTANTIATE_TEST_CASE_P(XLScales, LSM6DSOXXLScaleTest, ::testing::Values(
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_2G, 0x00),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_2G, 0x01),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_4G, 0x02),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_4G, 0x02),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_8G, 0x03),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_8G, 0x03),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x00, XL_16G, 0x01),
+                        std::tuple<uint8_t, uint8_t, uint8_t>(0x01, XL_2G, 0x01)
+                    )
+);
