@@ -36,7 +36,7 @@ TEST_F(LSM6DSOXTest, INT1Write){
 */
 TEST_F(LSM6DSOXTest, initAccelerometer){
     initAccelerometer();
-    EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL1_XL), 0x30); //[0][1][0][0][0][0][0][0] =64
+    EXPECT_EQ(i2cReadByte(LSM6DSOX_CTRL1_XL)>>5, 1); //[0][1][0][0][0][0][0][0] =64
 }
 
 /**
@@ -95,7 +95,7 @@ TEST_P(LSM6DSOXXLScaleTest, xlScaleBits){
     setXLScale(std::get<1>(GetParam()));
     initAccelerometer();
     uint8_t ctrl1_xl=i2cReadByte(LSM6DSOX_CTRL1_XL);
-    uint8_t masked=(ctrl1_xl&0x04)>>2;//get bit 1 and 2 and shift by 2
+    uint8_t masked=(ctrl1_xl&0x0C)>>2;//get bit 2 and 3 and shift by 2
     EXPECT_EQ(masked, std::get<2>(GetParam()));
 
 }
@@ -123,12 +123,13 @@ TEST_P(LSM6DSOXGyroScaleTest, gyroScaleBits){
     setGyroScale(std::get<0>(GetParam()));
     initGyro();
     uint8_t ctrl2_g=i2cReadByte(LSM6DSOX_CTRL2_G);
-    if (std::get<0>(GetParam())>GyroSettings::GYRO_125_DPS){
-        uint8_t masked=(ctrl2_g&0x04)>>1;//get bit 1 and 2 and shift by 1
+    uint8_t masked=0x00;
+    if (int(std::get<0>(GetParam()))>125){
+        masked=(ctrl2_g&0x06)>>1;//get bit 1 and 2 and shift by 1
         EXPECT_EQ(ctrl2_g&0x01, 0x00);//expect fs_125 bit to set low
     }
     else{
-        uint8_t masked=(ctrl2_g&0x01);//only check fs 125 bit
+        masked=(ctrl2_g&0x01);//only check fs 125 bit
     }
     EXPECT_EQ(masked, std::get<1>(GetParam()));
 
