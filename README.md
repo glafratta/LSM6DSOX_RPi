@@ -23,11 +23,11 @@ Raspberry Pi 5 with Debian Trixie OS, gpiod library version 2
 
 optional, compile tests and demo: 
 
-```cd test
+`cd test`
 
-cmake .
+`cmake .`
 
-make```
+`make `
 
 ## Run
 `ctest` : run unit tests
