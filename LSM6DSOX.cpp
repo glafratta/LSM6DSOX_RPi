@@ -35,7 +35,6 @@ void LSM6DSOX::start(){
 
 void LSM6DSOX::worker(){
     running=true;
-    int ct=0; //for debugging
     while (running){
         int r=gpiod_line_request_wait_edge_events(request, -1); //wait indefinitely
         if (DEBUG){
@@ -49,17 +48,15 @@ void LSM6DSOX::worker(){
                 std::cout<<"Edge event read:"<<n<<std::endl;
             }
             if (n>0){
-                getData(); //this reads data and releases data available bits in the status register
-                //callback goes here
-                std::cout<<"Interrupt happened!"<<std::endl;
+                //this reads data and releases data available bits in the status register
+                //also implements callback
+                getData(); 
             }
             gpiod_edge_event_buffer_free(buffer);
         }
         else{
-            // std::cout<<"Timeout!"<<std::endl;
             running=false; //need to delete this once you start getting data
         }
-        ct++;
     }
 
 }
