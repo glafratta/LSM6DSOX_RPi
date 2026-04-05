@@ -1,7 +1,0 @@
-/home/autism/LSM6DSOX_RPi/CMakeFiles/LSM6DSOX_Rpi.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/edit_cache.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/rebuild_cache.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/list_install_components.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/install.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/install/local.dir
-/home/autism/LSM6DSOX_RPi/CMakeFiles/install/strip.dir
