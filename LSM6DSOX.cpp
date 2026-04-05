@@ -275,7 +275,7 @@ uint8_t LSM6DSOX::gyroScaleBits(){
 uint8_t LSM6DSOX::xlScaleBits(){
     //read FS_MODE bit in CTRL8_XL 
     uint8_t fs=0x00;
-    uint8_t ctrl8_xl=i2cReadByte(CTRL8_XL);
+    uint8_t ctrl8_xl=i2cReadByte(LSM6DSOX_CTRL8_XL);
     uint8_t xl_bits=0x00;
     if (ctrl8_xl & (1<<1)){ //mask to see if 1st bit is 1
         std::cout<<"FS XL high!"<<std::endl;
